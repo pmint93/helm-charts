@@ -84,6 +84,9 @@ The following table lists the configurable parameters of the Metabase chart and 
 | colorLogging                     | Color log lines. When set to false it will disable log line colors | true       |
 | javaOpts                         | JVM options                                                 | null              |
 | pluginsDirectory                 | A directory with Metabase plugins                           | null              |
+| initContainers                   | init containers to download plugins and prepare stuff       | []                |
+| extraVolumes                     | Additional server volumes                                   | []                |
+| extraVolumeMounts                | Additional server volumeMounts                              | []                |
 | livenessProbe.initialDelaySeconds | Delay before liveness probe is initiated                   | 120               |
 | livenessProbe.timeoutSeconds     | When the probe times out                                    | 30                |
 | livenessProbe.failureThreshold   | Minimum consecutive failures for the probe                  | 6                 |
