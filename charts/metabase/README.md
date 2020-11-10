@@ -2,26 +2,31 @@
 
 [Metabase](http://metabase.com) is the easy, open source way for everyone in your company to ask questions and learn from data.
 
-## TL;DR;
-
-```bash
-$ helm install stable/metabase
-```
-
 ## Introduction
 
 This chart bootstraps a [Metabase](https://github.com/metabase/metabase) deployment on a [Kubernetes](http://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager.
 
 ## Prerequisites
 
-- Kubernetes 1.4+ with Beta APIs enabled
+- Kubernetes 1.4+
+
+## Get Repo Info
+
+```bash
+helm repo add pmint93 https://pmint93.github.io/helm-charts
+helm repo update
+```
+
+See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation.
 
 ## Installing the Chart
 
-To install the chart with the release name `my-release`:
-
 ```bash
-$ helm install --name my-release stable/metabase
+# Helm 3
+$ helm install [RELEASE_NAME] pmint93/metabase
+
+# Helm 2
+$ helm install --name [RELEASE_NAME] pmint93/metabase
 ```
 
 The command deploys Metabase on the Kubernetes cluster in the default configuration. The [configuration](#configuration) section lists the parameters that can be configured during installation.
@@ -30,10 +35,12 @@ The command deploys Metabase on the Kubernetes cluster in the default configurat
 
 ## Uninstalling the Chart
 
-To uninstall/delete the `my-release` deployment:
-
 ```bash
-$ helm delete my-release
+# Helm 3
+$ helm uninstall [RELEASE_NAME]
+
+# Helm 2
+# helm delete --purge [RELEASE_NAME]
 ```
 
 The command removes all the Kubernetes components associated with the chart and deletes the release.
@@ -107,21 +114,3 @@ The following table lists the configurable parameters of the Metabase chart and 
 | session.sessionCookies           | When browser is closed, user login session will expire      | null              |
 
 The above parameters map to the env variables defined in [metabase](http://github.com/metabase/metabase). For more information please refer to the [metabase documentations](http://www.metabase.com/docs/v0.36.3/).
-
-Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
-
-```bash
-$ helm install --name my-release \
-  --set timeZone=US/Pacific,password.complexity=strong,password.length=10 \
-    stable/metabase
-```
-
-The above command sets the time zone to `US/Pacific`, `strong` user password complexity and minimum length at `10`
-
-Alternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example,
-
-```bash
-$ helm install --name my-release -f values.yaml stable/metabase
-```
-
-> **Tip**: You can use the default [values.yaml](values.yaml)
