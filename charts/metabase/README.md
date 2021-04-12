@@ -94,6 +94,9 @@ The following table lists the configurable parameters of the Metabase chart and 
 | service.internalPort             | Service internal port, should be the same as `listen.port`  | 3000              |
 | service.nodePort                 | Service node port                                           | null              |
 | service.annotations              | Service annotations                                         | {}                |
+| serviceAccount.create            | Specifies whether a service account should be created       | false             |
+| serviceAccount.annotations       | Annotations to add to the service account                   | {}                |
+| serviceAccount.name              | The name of the service account to use                      | null              |
 | ingress.enabled                  | Enable ingress controller resource                          | false             |
 | ingress.hosts                    | Ingress resource hostnames                                  | null              |
 | ingress.path                     | Ingress path                                                | /                 |

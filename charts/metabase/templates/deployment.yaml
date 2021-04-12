@@ -161,6 +161,7 @@ spec:
       tolerations:
 {{ toYaml . | indent 8 }}
     {{- end }}
+      serviceAccountName: {{ template "metabase.serviceAccountName" . }}
       volumes:
         {{- if .Values.log4jProperties}}
         - name: config
