@@ -9,7 +9,7 @@ jobs:
       - name: Fetch history
         run: |
           git fetch --prune --unshallow;
-          COMMIT_MESSAGE=$(git log --format=%B -n 1 ${{ github.event.after }})
+          COMMIT_MESSAGE="* master:"
           echo "commitmsg=${COMMIT_MESSAGE}" >> $GITHUB_ENV
       - name: Run chart-testing (lint)
         id: lint
