@@ -9,8 +9,9 @@ jobs:
       - name: Fetch history
         run: |
           git fetch --prune --unshallow;
-          COMMIT_MESSAGE=$(git log --format=%B -n 1 ${{ github.event.after }})
-          echo "commitmsg=${COMMIT_MESSAGE}" >> $GITHUB_ENV
+          echo "commitmsg<<EOF
+          $(git log --format=%B -n 1 ${{ github.event.after }})
+          EOF" >> $GITHUB_ENV
       - name: Run chart-testing (lint)
         id: lint
         uses: helm/chart-testing-action@v1.0.0
