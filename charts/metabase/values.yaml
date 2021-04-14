@@ -8,6 +8,7 @@ podLabels: {}
 image:
   repository: metabase/metabase
   tag: v0.36.3
+  command: []
   pullPolicy: IfNotPresent
 
 ## String to fully override metabase.fullname template
