@@ -64,6 +64,10 @@ spec:
           {{- end }}
           - name: MB_DB_TYPE
             value: {{ .Values.database.type | lower }}
+          {{- if .Values.database.file }}
+          - name: MB_DB_FILE
+            value: {{ .Values.database.file }}
+          {{- end }}
           {{- if .Values.database.encryptionKey }}
           - name: MB_ENCRYPTION_SECRET_KEY
             valueFrom:
