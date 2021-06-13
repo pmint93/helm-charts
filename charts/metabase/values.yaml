@@ -108,6 +108,11 @@ ingress:
     # - secretName: metabase-tls
     #   hosts:
     #     - metabase.domain.com
+    #
+  secrets: []
+    #- name: metabase-tls
+    #  certificate: <certificate base64 encoded>
+    #  key: <certificate key base64 encoded>
 
 # A custom log4j.properties file can be provided using a multiline YAML string.
 # See https://github.com/metabase/metabase/blob/master/resources/log4j.properties
