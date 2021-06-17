@@ -130,6 +130,10 @@ spec:
           - name: MB_SESSION_COOKIES
             value: {{ .Values.session.sessionCookies | quote }}
           {{- end }}
+          {{- if .Values.session.cookieSameSite }}
+          - name: MB_COOKIE_SAMESITE
+            value: {{ .Values.session.cookieSameSite | quote }}
+          {{- end }}
           ports:
             - containerPort: {{ .Values.service.internalPort }}
           livenessProbe:

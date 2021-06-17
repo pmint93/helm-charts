@@ -7,7 +7,7 @@ podAnnotations: {}
 podLabels: {}
 image:
   repository: metabase/metabase
-  tag: v0.36.3
+  tag: v0.39.3
   command: []
   pullPolicy: IfNotPresent
 
@@ -68,6 +68,7 @@ emojiLogging: true
 session: {}
   # maxSessionAge:
   # sessionCookies:
+  # cookieSameSite:
 
 livenessProbe:
   initialDelaySeconds: 120
