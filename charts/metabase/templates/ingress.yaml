@@ -2,6 +2,7 @@
 {{- $serviceName := include "metabase.fullname" . -}}
 {{- $servicePort := .Values.service.externalPort -}}
 {{- $ingressPath := .Values.ingress.path -}}
+{{- $ingressPathType := .Values.ingress.pathType -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -26,6 +27,9 @@ spec:
       http:
         paths:
           - path: {{ $ingressPath }}
+            {{- if $ingressPathType }}
+            pathType: {{ $ingressPathType }}
+            {{- end }}
             backend:
               serviceName: {{ $serviceName }}
               servicePort: {{ $servicePort }}
