@@ -99,9 +99,9 @@ The following table lists the configurable parameters of the Metabase chart and 
 | serviceAccount.annotations       | Annotations to add to the service account                   | {}                |
 | serviceAccount.name              | The name of the service account to use                      | null              |
 | ingress.enabled                  | Enable ingress controller resource                          | false             |
-| ingress.hosts                    | Ingress resource hostnames                                  | null              |
+| ingress.hosts                    | Ingress resource hostnames                                  | ["*"]             |
 | ingress.path                     | Ingress path                                                | /                 |
-| ingress.pathType                 | Ingress pathType                                            | null              |
+| ingress.pathType                 | Ingress pathType                                            | Prefix            |
 | ingress.labels                   | Ingress labels configuration                                | null              |
 | ingress.annotations              | Ingress annotations configuration                           | {}                |
 | ingress.tls                      | Ingress TLS configuration                                   | null              |
