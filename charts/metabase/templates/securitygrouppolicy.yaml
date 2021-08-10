@@ -1,0 +1,22 @@
+{{- if .Values.awsEKS.sgp.enabled -}}
+apiVersion: vpcresources.k8s.aws/v1beta1
+kind: SecurityGroupPolicy
+metadata:
+  name: {{ template "metabase.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ template "metabase.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  podSelector:
+    matchLabels:
+      app: {{ template "metabase.name" . }}
+      release: {{ .Release.Name }}
+  securityGroups:
+    groupIds:
+      {{- range .Values.awsEKS.sgp.sgIds }}
+      - {{ . | quote }}
+      {{- end }}
+{{- end }}
