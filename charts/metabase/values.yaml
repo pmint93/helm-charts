@@ -156,3 +156,14 @@ tolerations: []
 ## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
 ##
 affinity: {}
+
+## AWS Security Group Policy (EKS)
+## ref: https://docs.aws.amazon.com/eks/latest/userguide/security-groups-for-pods.html
+##
+awsEKS:
+  sgp:
+    enabled: false
+    # AWS Security Group IDs to attach to the pod
+    # sgIds:
+    #   - sg-abc123
+    #   - sg-xyz456

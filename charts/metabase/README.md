@@ -98,6 +98,8 @@ The following table lists the configurable parameters of the Metabase chart and 
 | serviceAccount.create            | Specifies whether a service account should be created       | false             |
 | serviceAccount.annotations       | Annotations to add to the service account                   | {}                |
 | serviceAccount.name              | The name of the service account to use                      | null              |
+| awsEKS.sgp.enabled               | Enable EKS's Security Groups Policy                         | false             |
+| awsEKS.sgp.sgIds                 | List of AWS Security Group IDs to attach to the pod         | null              |
 | ingress.enabled                  | Enable ingress controller resource                          | false             |
 | ingress.hosts                    | Ingress resource hostnames                                  | ["*"]             |
 | ingress.path                     | Ingress path                                                | /                 |
