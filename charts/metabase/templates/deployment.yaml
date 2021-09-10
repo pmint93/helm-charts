@@ -118,6 +118,8 @@ spec:
           {{- end }}
           - name: MB_EMOJI_IN_LOGS
             value: {{ .Values.emojiLogging | quote }}
+          - name: MB_COLORIZE_LOGS
+            value: {{ .Values.colorLogging | quote }}
           {{- if .Values.siteUrl }}
           - name: MB_SITE_URL
             value: {{ .Values.siteUrl | quote }}
