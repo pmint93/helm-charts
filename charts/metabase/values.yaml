@@ -61,6 +61,7 @@ password:
 
 timeZone: UTC
 emojiLogging: true
+colorLogging: true
 # javaOpts:
 # pluginsDirectory:
 # siteUrl:

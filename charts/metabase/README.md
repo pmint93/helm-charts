@@ -81,6 +81,7 @@ The following table lists the configurable parameters of the Metabase chart and 
 | password.length                  | Minimum length required for Metabase account's password     | 6                 |
 | timeZone                         | Service time zone                                           | UTC               |
 | emojiLogging                     | Get a funny emoji in service log                            | true              |
+| colorLogging                     | Color log lines. When set to false it will disable log line colors | true       |
 | javaOpts                         | JVM options                                                 | null              |
 | pluginsDirectory                 | A directory with Metabase plugins                           | null              |
 | livenessProbe.initialDelaySeconds | Delay before liveness probe is initiated                   | 120               |
