@@ -70,6 +70,7 @@ The following table lists the configurable parameters of the Metabase chart and 
 | database.connectionURI           | Database connection URI (alternative to the below settings) | null              |
 | database.host                    | Database host                                               | null              |
 | database.port                    | Database port                                               | null              |
+| database.file                    | Database file (for H2; also add a volume to store it!)      | null              |
 | database.dbname                  | Database name                                               | null              |
 | database.username                | Database username                                           | null              |
 | database.password                | Database password                                           | null              |
