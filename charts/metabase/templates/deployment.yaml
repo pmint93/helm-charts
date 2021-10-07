@@ -27,6 +27,10 @@ spec:
 {{ toYaml .Values.podLabels | trim | indent 8 }}
         {{- end }}
     spec:
+      {{- if .Values.extraInitContainers }}
+      initContainers:
+        {{ toYaml .Values.extraInitContainers | nindent 8 }}
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -64,6 +68,10 @@ spec:
           {{- end }}
           - name: MB_DB_TYPE
             value: {{ .Values.database.type | lower }}
+          {{- if .Values.database.file }}
+          - name: MB_DB_FILE
+            value: {{ .Values.database.file }}
+          {{- end }}
           {{- if .Values.database.encryptionKey }}
           - name: MB_ENCRYPTION_SECRET_KEY
             valueFrom:
@@ -152,11 +160,16 @@ spec:
             initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
             timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
             periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
-          {{- if .Values.log4jProperties }}
+          {{- if or .Values.log4jProperties (ne (len .Values.extraVolumeMounts) 0) }}
           volumeMounts:
+            {{- if .Values.log4jProperties }}
             - name: config
               mountPath: /tmp/conf/
-          {{- end}}
+            {{- end }}
+            {{- if ne (len .Values.extraVolumeMounts) 0 }}
+              {{ toYaml .Values.extraVolumeMounts | nindent 12 }}
+            {{- end }}
+          {{- end }}
           resources:
 {{ toYaml .Values.resources | indent 12 }}
     {{- with .Values.nodeSelector }}
@@ -180,4 +193,7 @@ spec:
             items:
             - key: log4j.properties
               path: log4j.properties
+        {{- end }}
+        {{- if ne (len .Values.extraVolumes) 0 }}
+          {{ toYaml .Values.extraVolumes | nindent 8 }}
         {{- end }}

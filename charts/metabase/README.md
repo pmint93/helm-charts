@@ -70,6 +70,7 @@ The following table lists the configurable parameters of the Metabase chart and 
 | database.connectionURI           | Database connection URI (alternative to the below settings) | null              |
 | database.host                    | Database host                                               | null              |
 | database.port                    | Database port                                               | null              |
+| database.file                    | Database file (for H2; also add a volume to store it!)      | null              |
 | database.dbname                  | Database name                                               | null              |
 | database.username                | Database username                                           | null              |
 | database.password                | Database password                                           | null              |
@@ -84,6 +85,9 @@ The following table lists the configurable parameters of the Metabase chart and 
 | colorLogging                     | Color log lines. When set to false it will disable log line colors | true       |
 | javaOpts                         | JVM options                                                 | null              |
 | pluginsDirectory                 | A directory with Metabase plugins                           | null              |
+| extraInitContainers              | Additional init containers e.g. to download plugins         | []                |
+| extraVolumes                     | Additional server volumes                                   | []                |
+| extraVolumeMounts                | Additional server volumeMounts                              | []                |
 | livenessProbe.initialDelaySeconds | Delay before liveness probe is initiated                   | 120               |
 | livenessProbe.timeoutSeconds     | When the probe times out                                    | 30                |
 | livenessProbe.failureThreshold   | Minimum consecutive failures for the probe                  | 6                 |
