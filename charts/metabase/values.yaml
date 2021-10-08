@@ -122,6 +122,8 @@ service:
     # service.beta.kubernetes.io/aws-load-balancer-internal: "0.0.0.0/0"
 ingress:
   enabled: false
+  # The ingress class name, if you use multiple ingress controllers:
+  # className: ...
   # Used to create Ingress record (should used with service.type: ClusterIP).
   hosts:
     - "*"
