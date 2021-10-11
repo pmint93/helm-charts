@@ -106,6 +106,7 @@ The following table lists the configurable parameters of the Metabase chart and 
 | awsEKS.sgp.enabled               | Enable EKS's Security Groups Policy                         | false             |
 | awsEKS.sgp.sgIds                 | List of AWS Security Group IDs to attach to the pod         | null              |
 | ingress.enabled                  | Enable ingress controller resource                          | false             |
+| ingress.className                | Ingress class name (Kubernetes 1.18+)                       | null              |
 | ingress.hosts                    | Ingress resource hostnames                                  | ["*"]             |
 | ingress.path                     | Ingress path                                                | /                 |
 | ingress.pathType                 | Ingress pathType                                            | Prefix            |
