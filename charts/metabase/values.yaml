@@ -53,6 +53,16 @@ database:
   # existingSecretPasswordKey:
   # existingSecretConnectionURIKey:
 
+# Email configuration
+email:
+  fromAddress:
+  host:
+  port:
+  security: "none"
+  username:
+  existingSecret:
+  existingSecretPasswordKey:
+
 password:
   # Changing Metabase password complexity:
   # weak: no character constraints

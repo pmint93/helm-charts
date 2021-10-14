@@ -144,6 +144,33 @@ spec:
           - name: MB_COOKIE_SAMESITE
             value: {{ .Values.session.cookieSameSite | quote }}
           {{- end }}
+          {{- if .Values.email.fromAddress }}
+          - name: MB_EMAIL_FROM_ADDRESS
+            value: {{ .Values.email.fromAddress | quote }}
+          {{- end }}
+          {{- if .Values.email.host }}
+          - name: MB_EMAIL_SMTP_HOST
+            value: {{ .Values.email.host | quote }}
+          {{- end }}
+          {{- if .Values.email.port }}
+          - name: MB_EMAIL_SMTP_PORT
+            value: {{ .Values.email.port | quote }}
+          {{- end }}
+          {{- if .Values.email.security }}
+          - name: MB_EMAIL_SMTP_SECURITY
+            value: {{ .Values.session.cookieSameSite | quote }}
+          {{- end }}
+          {{- if .Values.email.username }}
+          - name: MB_EMAIL_SMTP_USERNAME
+            value: {{ .Values.session.cookieSameSite | quote }}
+          {{- end }}
+          {{- if .Values.email.existingSecretPasswordKey }}
+          - name: MB_EMAIL_SMTP_PASSWORD
+            valueFrom:
+                secretKeyRef:
+                  name: {{ or .Values.email.existingSecret (printf "%s-email" (include "metabase.fullname" .)) }}
+                  key: {{ or .Values.email.existingSecretPasswordKey "password" }}
+          {{- end }}
           ports:
             - containerPort: {{ .Values.service.internalPort }}
           livenessProbe:
