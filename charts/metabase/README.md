@@ -82,8 +82,10 @@ The following table lists the configurable parameters of the Metabase chart and 
 | email.host                              | SMTP server host                                                   | null              |
 | email.port                              | SMTP server port                                                   | null              |
 | email.security                          | SMTP security protocal                                             | none              |
-| email.username                          | SMPT username                                                      | null              |
+| email.username                          | SMTP username                                                      | null              |
+| email.password                          | SMTP password                                                      | null              |
 | email.existingSecret                    | Name of the secret containing the SMTP password                    | null              |
+| email.existingSecretUsernameKey         | Key in the existing secret for the SMTP username                   | null              |
 | email.existingSecretPasswordKey         | Key in the existing secret for the SMTP password                   | null              |
 | password.complexity                     | Complexity requirement for Metabase account's password             | normal            |
 | password.length                         | Minimum length required for Metabase account's password            | 6                 |

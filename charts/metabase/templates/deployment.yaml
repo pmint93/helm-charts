@@ -158,11 +158,14 @@ spec:
           {{- end }}
           {{- if .Values.email.security }}
           - name: MB_EMAIL_SMTP_SECURITY
-            value: {{ .Values.session.cookieSameSite | quote }}
+            value: {{ .Values.email.security | quote }}
           {{- end }}
           {{- if .Values.email.username }}
           - name: MB_EMAIL_SMTP_USERNAME
-            value: {{ .Values.session.cookieSameSite | quote }}
+            valueFrom:
+              secretKeyRef:
+                name: {{ or .Values.email.existingSecret (printf "%s-email" (include "metabase.fullname" .)) }}
+                key: {{ or .Values.email.existingSecretUsernameKey "username" }}
           {{- end }}
           {{- if .Values.email.existingSecretPasswordKey }}
           - name: MB_EMAIL_SMTP_PASSWORD

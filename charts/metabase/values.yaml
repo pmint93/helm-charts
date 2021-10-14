@@ -60,7 +60,9 @@ email:
   port:
   security: "none"
   username:
+  password:
   existingSecret:
+  existingSecretUsernameKey:
   existingSecretPasswordKey:
 
 password:
