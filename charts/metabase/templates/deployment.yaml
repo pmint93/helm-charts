@@ -162,12 +162,18 @@ spec:
           {{- end }}
           {{- if .Values.email.username }}
           - name: MB_EMAIL_SMTP_USERNAME
+            value: {{ .Values.email.username | quote }}
+          {{- else if or .Values.email.existingSecret .Values.email.existingSecretUsernameKey -}}
+          - name: MB_EMAIL_SMTP_USERNAME
             valueFrom:
               secretKeyRef:
                 name: {{ or .Values.email.existingSecret (printf "%s-email" (include "metabase.fullname" .)) }}
                 key: {{ or .Values.email.existingSecretUsernameKey "username" }}
           {{- end }}
-          {{- if .Values.email.existingSecretPasswordKey }}
+          {{- if .Values.email.password }}
+          - name: MB_EMAIL_SMTP_PASSWORD
+            value: {{ .Values.email.password | quote }}
+          {{- else if or .Values.email.existingSecret .Values.email.existingSecretPasswordKey -}}
           - name: MB_EMAIL_SMTP_PASSWORD
             valueFrom:
                 secretKeyRef:
