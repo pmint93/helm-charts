@@ -167,8 +167,8 @@ spec:
           - name: MB_EMAIL_SMTP_USERNAME
             valueFrom:
               secretKeyRef:
-                name: {{ or .Values.email.existingSecret (printf "%s-email" (include "metabase.fullname" .)) }}
-                key: {{ or .Values.email.existingSecretUsernameKey "username" }}
+                name: {{ .Values.email.existingSecret | default (printf "%s-email" (include "metabase.fullname" .)) | quote  }}
+                key: {{ .Values.email.existingSecretUsernameKey | default "username" | quote }}
           {{- end }}
           {{- if .Values.email.password }}
           - name: MB_EMAIL_SMTP_PASSWORD
