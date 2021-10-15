@@ -177,8 +177,8 @@ spec:
           - name: MB_EMAIL_SMTP_PASSWORD
             valueFrom:
                 secretKeyRef:
-                  name: {{ or .Values.email.existingSecret (printf "%s-email" (include "metabase.fullname" .)) }}
-                  key: {{ or .Values.email.existingSecretPasswordKey "password" }}
+                  name: {{ .Values.email.existingSecret | default (printf "%s-email" (include "metabase.fullname" .)) | quote }}
+                  key: {{ .Values.email.existingSecretPasswordKey | default "password" | quote}}
           {{- end }}
           ports:
             - containerPort: {{ .Values.service.internalPort }}
