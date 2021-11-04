@@ -52,6 +52,23 @@ database:
   # existingSecretUsernameKey:
   # existingSecretPasswordKey:
   # existingSecretConnectionURIKey:
+  ## One or more Google Cloud SQL database instances can be made available to Metabase via the *Cloud SQL Auth proxy*.
+  ## These can be used for Metabase's internal database (by specifying `host: localhost` and the port above), or as
+  ## additional databases (configured at Admin → Databases). Workload Identity should be used for authentication, so
+  ## that when `serviceAccount.create=true`, `serviceAccount.annotations` should contain:
+  ##   iam.gke.io/gcp-service-account: your-gsa@email
+  ## Ref: https://cloud.google.com/sql/docs/postgres/connect-kubernetes-engine
+  googleCloudSQL:
+    ## Found in Cloud Console "Cloud SQL Instance details" or using `gcloud sql instances describe INSTANCE_ID`
+    ## example format: $project:$region:$instance=tcp:$port
+    ## Each connection must have a unique TCP port.
+    instanceConnectionNames: []
+    ## Option to use a specific version of the *Cloud SQL Auth proxy* sidecar image.
+    ## ref: https://console.cloud.google.com/gcr/images/cloudsql-docker/GLOBAL/gce-proxy
+    #sidecarImageTag: latest
+    ## ref: https://cloud.google.com/sql/docs/postgres/connect-kubernetes-engine#running_the_as_a_sidecar
+    resources:
+      {}
 
 password:
   # Changing Metabase password complexity:

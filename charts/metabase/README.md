@@ -78,6 +78,9 @@ The following table lists the configurable parameters of the Metabase chart and 
 | database.existingSecretUsernameKey | Username key for exising secret                           | null              |
 | database.existingSecretPasswordKey | Password key for exising secret                           | null              |
 | database.existingSecretConnectionURIKey | ConnectionURI key for exising secret                 | null              |
+| database.googleCloudSQL.instanceConnectionNames | Google Cloud SQL instance connection names. See `values.yaml` for details. | [] |
+| database.googleCloudSQL.sidecarImageTag | Specific tag for the Google Cloud SQL Auth proxy sidecar image | latest  |
+| database.googleCloudSQL.resources | Google Cloud SQL Auth proxy resource requests and limits   | {}                |
 | password.complexity              | Complexity requirement for Metabase account's password      | normal            |
 | password.length                  | Minimum length required for Metabase account's password     | 6                 |
 | timeZone                         | Service time zone                                           | UTC               |
