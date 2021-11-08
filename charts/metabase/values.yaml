@@ -65,7 +65,7 @@ database:
     instanceConnectionNames: []
     ## Option to use a specific version of the *Cloud SQL Auth proxy* sidecar image.
     ## ref: https://console.cloud.google.com/gcr/images/cloudsql-docker/GLOBAL/gce-proxy
-    #sidecarImageTag: latest
+    # sidecarImageTag: latest
     ## ref: https://cloud.google.com/sql/docs/postgres/connect-kubernetes-engine#running_the_as_a_sidecar
     resources:
       {}
