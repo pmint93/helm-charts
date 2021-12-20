@@ -55,7 +55,7 @@ The following table lists the configurable parameters of the Metabase chart and 
 | podAnnotations                   | controller pods annotations                                 | {}                |
 | podLabels                        | extra pods labels                                           | {}                |
 | image.repository                 | controller container image repository                       | metabase/metabase |
-| image.tag                        | controller container image tag                              | v0.39.3           |
+| image.tag                        | controller container image tag                              | v0.41.5           |
 | image.command                    | controller container image command                          | []                |
 | image.pullPolicy                 | controller container image pull policy                      | IfNotPresent      |
 | fullnameOverride                 | String to fully override metabase.fullname template         | null              |
