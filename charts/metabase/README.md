@@ -58,6 +58,7 @@ The following table lists the configurable parameters of the Metabase chart and 
 | image.tag                        | controller container image tag                              | v0.41.5           |
 | image.command                    | controller container image command                          | []                |
 | image.pullPolicy                 | controller container image pull policy                      | IfNotPresent      |
+| image.pullSecrets                | controller container image pull secrets                     | []                |
 | fullnameOverride                 | String to fully override metabase.fullname template         | null              |
 | listen.host                      | Listening on a specific network host                        | 0.0.0.0           |
 | listen.port                      | Listening on a specific network port                        | 3000              |
