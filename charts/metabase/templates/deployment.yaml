@@ -31,6 +31,12 @@ spec:
       initContainers:
         {{ toYaml .Values.extraInitContainers | nindent 8 }}
       {{- end }}
+      {{- if gt (len .Values.image.pullSecrets) 0 }}
+      imagePullSecrets:
+        {{- range .Values.image.pullSecrets }}
+        - name: {{ . | quote }}
+        {{- end }}
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

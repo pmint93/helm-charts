@@ -10,6 +10,7 @@ image:
   tag: v0.41.5
   command: []
   pullPolicy: IfNotPresent
+  pullSecrets: []
 
 ## String to fully override metabase.fullname template
 ##
