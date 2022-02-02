@@ -218,3 +218,7 @@ awsEKS:
 
 #envFromSecret: your-secret-with-envs
 envFromSecret: ""
+
+extraEnv: {}
+#  - name: MB_CHECK_FOR_UPDATES
+#    value: false

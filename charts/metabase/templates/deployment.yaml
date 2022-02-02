@@ -150,6 +150,10 @@ spec:
           - name: MB_COOKIE_SAMESITE
             value: {{ .Values.session.cookieSameSite | quote }}
           {{- end }}
+          {{- range .Values.extraEnv }}
+          - name: {{ .name }}
+            value: {{ .value }}
+          {{- end }}
           {{- if .Values.envFromSecret }}
           envFrom:
             - secretRef:
