@@ -150,6 +150,11 @@ spec:
           - name: MB_COOKIE_SAMESITE
             value: {{ .Values.session.cookieSameSite | quote }}
           {{- end }}
+          {{- if .Values.envFromSecret }}
+          envFrom:
+            - secretRef:
+                name: {{ .Values.envFromSecret }}
+          {{- end }}
           ports:
             - containerPort: {{ .Values.service.internalPort }}
           livenessProbe:

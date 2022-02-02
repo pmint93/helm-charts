@@ -215,3 +215,6 @@ awsEKS:
     # sgIds:
     #   - sg-abc123
     #   - sg-xyz456
+
+#envFromSecret: your-secret-with-envs
+envFromSecret: ""
