@@ -7,7 +7,7 @@ podAnnotations: {}
 podLabels: {}
 image:
   repository: metabase/metabase
-  tag: v0.41.5
+  tag: v0.41.6
   command: []
   pullPolicy: IfNotPresent
   pullSecrets: []

@@ -3,7 +3,7 @@ description: The easy, open source way for everyone in your company to ask quest
   and learn from data.
 name: metabase
 version: 1.4.0
-appVersion: v0.41.5
+appVersion: v0.41.6
 maintainers:
   - name: pmint93
     email: phamminhthanh69@gmail.com
