@@ -133,4 +133,4 @@ The following table lists the configurable parameters of the Metabase chart and 
 | envFromSecret                    | Existing secret with environment variables as KV pairs      | null              |
 | extraEnv                         | Mapping of extra environment variables                      | {}                |
 
-The above parameters map to the env variables defined in [metabase](http://github.com/metabase/metabase). For more information please refer to the [metabase documentations](http://www.metabase.com/docs/v0.36.3/).
+The above parameters map to the env variables defined in [metabase](http://github.com/metabase/metabase). For more information please refer to the [metabase documentations](https://www.metabase.com/docs/v0.41/operations-guide/environment-variables.html).
