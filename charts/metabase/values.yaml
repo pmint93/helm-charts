@@ -39,7 +39,7 @@ database:
   type: h2
   ## Specify file to store H2 database.  You will also have to back this with a volume (cf. extraVolume and extraVolumeMounts)!
   # file:
-  # encryptionKey: << YOUR ENCRYPTION KEY OR LEAVE BLANK AND USE EXISTING SECRET >> 
+  # encryptionKey: << YOUR ENCRYPTION KEY OR LEAVE BLANK AND USE EXISTING SECRET >>
   ## Only need when you use mysql / postgres
   # host:
   # port:
@@ -217,8 +217,8 @@ awsEKS:
     #   - sg-abc123
     #   - sg-xyz456
 
-#envFromSecret: your-secret-with-envs
 envFromSecret: ""
+# envFromSecret: your-secret-with-envs
 
 extraEnv: {}
 #  - name: MB_CHECK_FOR_UPDATES
