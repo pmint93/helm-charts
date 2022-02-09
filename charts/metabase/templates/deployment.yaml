@@ -78,12 +78,12 @@ spec:
           - name: MB_DB_FILE
             value: {{ .Values.database.file }}
           {{- end }}
-          {{- if .Values.database.encryptionKey }}
+          {{- if or .Values.database.existingSecretEncryptionKeyKey .Values.database.encryptionKey }}
           - name: MB_ENCRYPTION_SECRET_KEY
             valueFrom:
               secretKeyRef:
-                name: {{ template "metabase.fullname" . }}-database
-                key: encryptionKey
+                name: {{ or .Values.database.existingSecret (printf "%s-database" (include "metabase.fullname" .))}}
+                key: {{ or .Values.database.existingSecretEncryptionKeyKey "encryptionKey" }} 
           {{- end }}
           {{- if ne (.Values.database.type | lower) "h2" }}
             {{- if or .Values.database.existingSecretConnectionURIKey .Values.database.connectionURI }}
@@ -149,6 +149,15 @@ spec:
           {{- if .Values.session.cookieSameSite }}
           - name: MB_COOKIE_SAMESITE
             value: {{ .Values.session.cookieSameSite | quote }}
+          {{- end }}
+          {{- range .Values.extraEnv }}
+          - name: {{ .name }}
+            value: {{ .value }}
+          {{- end }}
+          {{- if .Values.envFromSecret }}
+          envFrom:
+            - secretRef:
+                name: {{ .Values.envFromSecret }}
           {{- end }}
           ports:
             - containerPort: {{ .Values.service.internalPort }}

@@ -55,7 +55,7 @@ The following table lists the configurable parameters of the Metabase chart and 
 | podAnnotations                   | controller pods annotations                                 | {}                |
 | podLabels                        | extra pods labels                                           | {}                |
 | image.repository                 | controller container image repository                       | metabase/metabase |
-| image.tag                        | controller container image tag                              | v0.41.5           |
+| image.tag                        | controller container image tag                              | v0.41.6           |
 | image.command                    | controller container image command                          | []                |
 | image.pullPolicy                 | controller container image pull policy                      | IfNotPresent      |
 | image.pullSecrets                | controller container image pull secrets                     | []                |
@@ -79,6 +79,7 @@ The following table lists the configurable parameters of the Metabase chart and 
 | database.existingSecretUsernameKey | Username key for exising secret                           | null              |
 | database.existingSecretPasswordKey | Password key for exising secret                           | null              |
 | database.existingSecretConnectionURIKey | ConnectionURI key for exising secret                 | null              |
+| database.existingSecretEncryptionKeyKey | EncryptionKey key for exising secret                 | null              |
 | database.googleCloudSQL.instanceConnectionNames | Google Cloud SQL instance connection names. See `values.yaml` for details. | [] |
 | database.googleCloudSQL.sidecarImageTag | Specific tag for the Google Cloud SQL Auth proxy sidecar image | latest  |
 | database.googleCloudSQL.resources | Google Cloud SQL Auth proxy resource requests and limits   | {}                |
@@ -129,5 +130,7 @@ The following table lists the configurable parameters of the Metabase chart and 
 | siteUrl                          | Base URL, useful for serving behind a reverse proxy         | null              |
 | session.maxSessionAge            | Session expiration defined in minutes                       | 20160             |
 | session.sessionCookies           | When browser is closed, user login session will expire      | null              |
+| envFromSecret                    | Existing secret with environment variables as KV pairs      | null              |
+| extraEnv                         | Mapping of extra environment variables                      | {}                |
 
-The above parameters map to the env variables defined in [metabase](http://github.com/metabase/metabase). For more information please refer to the [metabase documentations](http://www.metabase.com/docs/v0.36.3/).
+The above parameters map to the env variables defined in [metabase](http://github.com/metabase/metabase). For more information please refer to the [metabase documentations](https://www.metabase.com/docs/v0.41/operations-guide/environment-variables.html).

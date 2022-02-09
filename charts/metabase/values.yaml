@@ -7,7 +7,7 @@ podAnnotations: {}
 podLabels: {}
 image:
   repository: metabase/metabase
-  tag: v0.41.5
+  tag: v0.41.6
   command: []
   pullPolicy: IfNotPresent
   pullSecrets: []
@@ -39,7 +39,7 @@ database:
   type: h2
   ## Specify file to store H2 database.  You will also have to back this with a volume (cf. extraVolume and extraVolumeMounts)!
   # file:
-  # encryptionKey: << YOUR ENCRYPTION KEY >>
+  # encryptionKey: << YOUR ENCRYPTION KEY OR LEAVE BLANK AND USE EXISTING SECRET >>
   ## Only need when you use mysql / postgres
   # host:
   # port:
@@ -53,6 +53,7 @@ database:
   # existingSecretUsernameKey:
   # existingSecretPasswordKey:
   # existingSecretConnectionURIKey:
+  # existingSecretEncryptionKeyKey:
   ## One or more Google Cloud SQL database instances can be made available to Metabase via the *Cloud SQL Auth proxy*.
   ## These can be used for Metabase's internal database (by specifying `host: localhost` and the port above), or as
   ## additional databases (configured at Admin → Databases). Workload Identity should be used for authentication, so
@@ -215,3 +216,10 @@ awsEKS:
     # sgIds:
     #   - sg-abc123
     #   - sg-xyz456
+
+envFromSecret: ""
+# envFromSecret: your-secret-with-envs
+
+extraEnv: {}
+#  - name: MB_CHECK_FOR_UPDATES
+#    value: false
