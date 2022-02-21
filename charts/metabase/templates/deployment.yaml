@@ -83,7 +83,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: {{ or .Values.database.existingSecret (printf "%s-database" (include "metabase.fullname" .))}}
-                key: {{ or .Values.database.existingSecretEncryptionKeyKey "encryptionKey" }} 
+                key: {{ or .Values.database.existingSecretEncryptionKeyKey "encryptionKey" }}
           {{- end }}
           {{- if ne (.Values.database.type | lower) "h2" }}
             {{- if or .Values.database.existingSecretConnectionURIKey .Values.database.connectionURI }}
@@ -152,7 +152,7 @@ spec:
           {{- end }}
           {{- range .Values.extraEnv }}
           - name: {{ .name }}
-            value: {{ .value }}
+            value: {{ .value | quote }}
           {{- end }}
           {{- if .Values.envFromSecret }}
           envFrom:
