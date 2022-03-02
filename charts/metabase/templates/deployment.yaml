@@ -13,6 +13,10 @@ spec:
     matchLabels:
       app: {{ template "metabase.name" . }}
   replicas: {{ .Values.replicaCount }}
+  {{- with .Values.strategy }}
+  strategy:
+{{ toYaml . | trim | indent 4 }}
+  {{- end }}
   template:
     metadata:
       annotations:
