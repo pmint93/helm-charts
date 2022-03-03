@@ -169,6 +169,11 @@ ingress:
 #
 # log4jProperties:
 
+# The deployment strategy to use
+# https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/deployment-v1/#DeploymentSpec
+# strategy:
+#   type: "Recreate"
+
 serviceAccount:
   # Specifies whether a service account should be created
   create: false
