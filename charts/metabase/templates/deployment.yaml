@@ -154,10 +154,7 @@ spec:
           - name: MB_COOKIE_SAMESITE
             value: {{ .Values.session.cookieSameSite | quote }}
           {{- end }}
-          {{- range .Values.extraEnv }}
-          - name: {{ .name }}
-            value: {{ .value | quote }}
-          {{- end }}
+          {{- .Values.extraEnv | toYaml | nindent 10 }}
           {{- if .Values.envFromSecret }}
           envFrom:
             - secretRef:
