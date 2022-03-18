@@ -222,9 +222,6 @@ awsEKS:
     #   - sg-abc123
     #   - sg-xyz456
 
-envFromSecret: ""
-# envFromSecret: your-secret-with-envs
-
 extraEnv: {}
 #  - name: MB_CHECK_FOR_UPDATES
 #    value: false
