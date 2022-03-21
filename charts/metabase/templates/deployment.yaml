@@ -154,7 +154,9 @@ spec:
           - name: MB_COOKIE_SAMESITE
             value: {{ .Values.session.cookieSameSite | quote }}
           {{- end }}
+          {{- if gt (len .Values.extraEnv) 0 }}
           {{- .Values.extraEnv | toYaml | nindent 10 }}
+          {{- end }}
           ports:
             - containerPort: {{ .Values.service.internalPort }}
           livenessProbe:
