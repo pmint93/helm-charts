@@ -130,7 +130,6 @@ The following table lists the configurable parameters of the Metabase chart and 
 | siteUrl                          | Base URL, useful for serving behind a reverse proxy         | null              |
 | session.maxSessionAge            | Session expiration defined in minutes                       | 20160             |
 | session.sessionCookies           | When browser is closed, user login session will expire      | null              |
-| envFromSecret                    | Existing secret with environment variables as KV pairs      | null              |
 | extraEnv                         | Mapping of extra environment variables                      | {}                |
 
 The above parameters map to the env variables defined in [metabase](http://github.com/metabase/metabase). For more information please refer to the [metabase documentations](https://www.metabase.com/docs/v0.41/operations-guide/environment-variables.html).
