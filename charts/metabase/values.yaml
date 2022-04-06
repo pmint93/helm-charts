@@ -33,6 +33,10 @@ jetty:
 #  maxQueued: -1
 #  maxIdleTime: 60000
 
+#For production, enabled postgresql
+postgresql:
+  enabled: false
+
 # Backend database
 database:
   # Database type (h2 / mysql / postgres), default: h2

@@ -1,13 +1,20 @@
-apiVersion: v1
+apiVersion: v2
 description: The easy, open source way for everyone in your company to ask questions
   and learn from data.
 name: metabase
-version: 2.1.0
+version: 2.2.0
 appVersion: v0.42.3
 maintainers:
   - name: pmint93
     email: phamminhthanh69@gmail.com
+dependencies:
+  - name: postgresql
+    version: 11.1.17
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled
 home: http://www.metabase.com/
 icon: http://www.metabase.com/images/logo.svg
 sources:
   - https://github.com/metabase/metabase
+  - https://github.com/pmint93/helm-charts/metabase
+
