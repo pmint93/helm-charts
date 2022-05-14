@@ -119,11 +119,13 @@ extraVolumes: []
 #    emptyDir: {}
 
 livenessProbe:
+  path: /api/health
   initialDelaySeconds: 120
   timeoutSeconds: 30
   failureThreshold: 6
 
 readinessProbe:
+  path: /api/health
   initialDelaySeconds: 30
   timeoutSeconds: 3
   periodSeconds: 5
