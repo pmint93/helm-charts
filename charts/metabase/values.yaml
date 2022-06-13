@@ -213,6 +213,11 @@ tolerations: []
 ##
 affinity: {}
 
+## PriorityClass for pod assignment
+## ref: 
+## https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#pod-priority
+## priorityClass: ""
+
 ## AWS Security Group Policy (EKS)
 ## ref: https://docs.aws.amazon.com/eks/latest/userguide/security-groups-for-pods.html
 ##
