@@ -123,6 +123,7 @@ The following table lists the configurable parameters of the Metabase chart and 
 | nodeSelector                     | Node labels for pod assignment                              | {}                |
 | tolerations                      | Toleration labels for pod assignment                        | []                |
 | affinity                         | Affinity settings for pod assignment                        | {}                |
+| priorityClass                    | PriorityClass settings for pod assignment                   | null              |
 | jetty.maxThreads                 | Jetty max number of threads                                 | null              |
 | jetty.minThreads                 | Jetty min number of threads                                 | null              |
 | jetty.maxQueued                  | Jetty max queue size                                        | null              |
