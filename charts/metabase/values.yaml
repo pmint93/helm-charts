@@ -7,7 +7,7 @@ podAnnotations: {}
 podLabels: {}
 image:
   repository: metabase/metabase
-  tag: v0.44.3
+  tag: v0.44.6
   command: []
   pullPolicy: IfNotPresent
   pullSecrets: []
@@ -69,8 +69,7 @@ database:
     ## ref: https://console.cloud.google.com/gcr/images/cloudsql-docker/GLOBAL/gce-proxy
     # sidecarImageTag: latest
     ## ref: https://cloud.google.com/sql/docs/postgres/connect-kubernetes-engine#running_the_as_a_sidecar
-    resources:
-      {}
+    resources: {}
 
 password:
   # Changing Metabase password complexity:
