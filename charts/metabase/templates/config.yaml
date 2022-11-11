@@ -13,3 +13,7 @@ data:
   log4j.properties:
 {{ toYaml .Values.log4jProperties | indent 4}}
   {{- end}}
+  config.yaml:
+    version: 1
+    config: 
+{{ toYaml .Values.config | indent 6}}
