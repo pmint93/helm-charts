@@ -92,6 +92,28 @@ session:
   # sessionCookies:
   # cookieSameSite:
 
+# Specifies the config to use as config.yaml, as per
+# https://github.com/metabase/metabase/pull/25986/files
+#
+config:
+  # users:
+  #   - first_name: Cam
+  #     last_name: Saul
+  #     password: 2cans
+  #     email: cam@example.com
+  #   - first_name: Cam
+  #     last_name: Era
+  #     password: 2cans
+  #     email: cam.era@example.com
+  # databases:
+  #   - type: postgres
+  #     host: localhost
+  #     port: 5432
+  #     name: test-data
+  #     password: {{ env MY_POSTGRES_PASSWORD }}
+  # settings:
+  #   my-setting: 1234
+
 # specify init containers, e.g. for module download
 extraInitContainers: []
 #  - name: download-modules

@@ -214,13 +214,19 @@ spec:
       serviceAccountName: {{ template "metabase.serviceAccountName" . }}
       volumes:
         {{- if .Values.log4jProperties}}
-        - name: config
+        - name: log4j
           configMap:
             name: {{ template "metabase.fullname" . }}-config
             items:
             - key: log4j.properties
               path: log4j.properties
         {{- end }}
+        - name: config
+          configMap:
+            name: {{ template "metabase.fullname" . }}-config
+            items:
+            - key: config.yaml
+              path: config.yaml
         {{- if ne (len .Values.extraVolumes) 0 }}
           {{ toYaml .Values.extraVolumes | nindent 8 }}
         {{- end }}
