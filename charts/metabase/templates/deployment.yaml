@@ -198,8 +198,36 @@ spec:
           command:
             - "/cloud_sql_proxy"
             - "-instances={{ join "," .Values.database.googleCloudSQL.instanceConnectionNames }}"
+            - "-term_timeout=10s"
+            - "-structured_logs"
+            - "-use_http_health_check"
+            - "-enable_iam_login"
           securityContext:
             runAsNonRoot: true
+          livenessProbe:
+            httpGet:
+              path: /liveness
+              port: 8090
+            initialDelaySeconds: 0
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 2
+          readinessProbe:
+            httpGet:
+              path: /readiness
+              port: 8090
+            initialDelaySeconds: 0
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 2
+          startupProbe:
+            httpGet:
+              path: /startup
+              port: 8090
+            periodSeconds: 1
+            timeoutSeconds: 5
+            failureThreshold: 20
           resources:
 {{ toYaml .Values.database.googleCloudSQL.resources | indent 12 }}
         {{- end }}
