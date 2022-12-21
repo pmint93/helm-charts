@@ -64,6 +64,8 @@ The following table lists the configurable parameters of the Metabase chart and 
 | fullnameOverride                                | String to fully override metabase.fullname template                        | null              |
 | listen.host                                     | Listening on a specific network host                                       | 0.0.0.0           |
 | listen.port                                     | Listening on a specific network port                                       | 3000              |
+| monitoring.enabled                              | Enable prometheus endpoint                                                 | false             |
+| monitoring.port                                 | Listening port for prometheus endpoint                                     | 9191              |
 | ssl.enabled                                     | Enable SSL to run over HTTPS                                               | false             |
 | ssl.port                                        | SSL port                                                                   | null              |
 | ssl.keyStore                                    | The key store in JKS format                                                | null              |
