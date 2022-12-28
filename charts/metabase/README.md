@@ -122,7 +122,8 @@ The following table lists the configurable parameters of the Metabase chart and 
 | ingress.labels                                  | Ingress labels configuration                                               | null              |
 | ingress.annotations                             | Ingress annotations configuration                                          | {}                |
 | ingress.tls                                     | Ingress TLS configuration                                                  | null              |
-| log4jProperties                                 | Custom `log4j.properties` file                                             | null              |
+| log4j2XML                                       | Custom `log4j2.xml` file                                                   | null              |
+| log4jProperties                                 | DEPRECATED Custom `log4j.properties` file                                             | null              |
 | resources                                       | Server resource requests and limits                                        | {}                |
 | nodeSelector                                    | Node labels for pod assignment                                             | {}                |
 | tolerations                                     | Toleration labels for pod assignment                                       | []                |
