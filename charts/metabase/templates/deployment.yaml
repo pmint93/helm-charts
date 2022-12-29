@@ -194,11 +194,7 @@ spec:
             periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
           {{- if or .Values.log4jProperties (ne (len .Values.extraVolumeMounts) 0) }}
           volumeMounts:
-            {{- if .Values.log4jProperties }}
-            - name: config
-              mountPath: /tmp/conf/
-            {{- end }}
-            {{- if .Values.log4j2XML }}
+            {{- if .Values.log4jProperties or .Values.log4j2XML }}
             - name: config
               mountPath: /tmp/conf/
             {{- end }}
@@ -264,21 +260,19 @@ spec:
       {{- end }}
       serviceAccountName: {{ template "metabase.serviceAccountName" . }}
       volumes:
-        {{- if .Values.log4jProperties}}
+        {{- if .Values.log4jProperties or .Values.log4j2XML }}
         - name: config
           configMap:
             name: {{ template "metabase.fullname" . }}-config
             items:
+            {{- if .Values.log4jProperties }}
             - key: log4j.properties
               path: log4j.properties
-        {{- end }}
-        {{- if .Values.log4j2XML}}
-        - name: config
-          configMap:
-            name: {{ template "metabase.fullname" . }}-config
-            items:
+            {{- end }}
+            {{- if .Values.log4j2XML}}
             - key: log4j2.xml
               path: log4j2.xml
+            {{- end }}
         {{- end }}
         {{- if ne (len .Values.extraVolumes) 0 }}
           {{ toYaml .Values.extraVolumes | nindent 8 }}
