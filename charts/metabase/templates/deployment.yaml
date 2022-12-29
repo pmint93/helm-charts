@@ -194,7 +194,7 @@ spec:
             periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
           {{- if or .Values.log4jProperties (ne (len .Values.extraVolumeMounts) 0) }}
           volumeMounts:
-            {{- if .Values.log4jProperties or .Values.log4j2XML }}
+            {{- if or .Values.log4jProperties .Values.log4j2XML }}
             - name: config
               mountPath: /tmp/conf/
             {{- end }}
@@ -260,7 +260,7 @@ spec:
       {{- end }}
       serviceAccountName: {{ template "metabase.serviceAccountName" . }}
       volumes:
-        {{- if .Values.log4jProperties or .Values.log4j2XML }}
+        {{- if or .Values.log4jProperties .Values.log4j2XML }}
         - name: config
           configMap:
             name: {{ template "metabase.fullname" . }}-config
