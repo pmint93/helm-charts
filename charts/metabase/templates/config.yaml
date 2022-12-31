@@ -13,3 +13,7 @@ data:
   log4j.properties:
 {{ toYaml .Values.log4jProperties | indent 4}}
   {{- end}}
+  {{- if .Values.log4j2XML }}
+  log4j2.xml:
+{{ toYaml .Values.log4j2XML | indent 4}}
+  {{- end}}
