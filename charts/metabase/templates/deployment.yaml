@@ -142,7 +142,7 @@ spec:
             {{- end }}
             {{- if .Values.log4j2XML }}
           - name: JAVA_OPTS
-            value: "-Dlog4j.configuration=file:/tmp/conf/log4j2.xml"
+            value: "-Dlog4j.configurationFile=file:/tmp/conf/log4j2.xml"
             {{- end }}
           {{- end }}
           {{- if .Values.pluginsDirectory }}
