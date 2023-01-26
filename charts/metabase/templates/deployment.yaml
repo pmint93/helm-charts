@@ -114,11 +114,15 @@ spec:
             value: {{ .Values.database.port | quote }}
           - name: MB_DB_DBNAME
             value: {{ .Values.database.dbname | quote }}
+            {{- end }}
+            {{- if or .Values.database.existingSecretUsernameKey .Values.database.username }}
           - name: MB_DB_USER
             valueFrom:
               secretKeyRef:
                 name: {{ or .Values.database.existingSecret (printf "%s-database" (include "metabase.fullname" .)) }}
                 key: {{ or .Values.database.existingSecretUsernameKey "username" }}
+            {{- end }}
+            {{- if or .Values.database.existingSecretPasswordKey .Values.database.password }}
           - name: MB_DB_PASS
             valueFrom:
               secretKeyRef:
