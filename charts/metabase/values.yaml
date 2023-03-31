@@ -171,11 +171,27 @@ ingress:
     #   hosts:
     #     - metabase.domain.com
 
+route:
+  enabled: false
+  annotations:
+    {}
+    # haproxy.router.openshift.io/timeout: "60s"
+  # host: ""
+  path: ""
+  wildcardPolicy: "None"
+  tls:
+    {}
+    # termination: "Edge"
+    # insecureEdgeTerminationPolicy: "Redirect"
+    # key: ""
+    # certificate: ""
+    # caCertificate: ""
+    # destinationCACertificate: ""
+
 # A custom log4j2.xml file can be provided using a multiline YAML string.
 # See https://github.com/metabase/metabase/blob/master/resources/log4j2.xml
 #
 # log4j2XML:
-
 
 # DEPRECATED; A custom log4j.properties file can be provided using a multiline YAML string.
 # See https://github.com/metabase/metabase/blob/master/resources/log4j.properties
