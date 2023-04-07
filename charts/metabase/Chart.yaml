@@ -3,7 +3,7 @@ description:
   The easy, open source way for everyone in your company to ask questions
   and learn from data.
 name: metabase
-version: 2.6.4
+version: 2.7.0
 appVersion: v0.46.0
 maintainers:
   - name: pmint93

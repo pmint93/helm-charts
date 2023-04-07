@@ -122,6 +122,12 @@ The following table lists the configurable parameters of the Metabase chart and 
 | ingress.labels                                  | Ingress labels configuration                                               | null              |
 | ingress.annotations                             | Ingress annotations configuration                                          | {}                |
 | ingress.tls                                     | Ingress TLS configuration                                                  | null              |
+| route.enabled                                   | Enable OpenShift route resource                                            | false             |
+| route.annotations                               | Route annotations configuration                                            | {}                |
+| route.host                                      | Route hostname                                                             | null              |
+| route.path                                      | Route path                                                                 | ""                |
+| route.wildcardPolicy                            | Route wildcard policy                                                      | None              |
+| route.tls                                       | Route tls configuration                                                    | {}                |
 | log4j2XML                                       | Custom `log4j2.xml` file                                                   | null              |
 | log4jProperties                                 | DEPRECATED Custom `log4j.properties` file                                             | null              |
 | resources                                       | Server resource requests and limits                                        | {}                |
