@@ -196,8 +196,12 @@ spec:
             initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
             timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
             periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
-          {{- if or .Values.log4jProperties .Values.log4j2XML (ne (len .Values.extraVolumeMounts) 0) }}
+          {{- if or .Values.log4jProperties .Values.log4j2XML .Values.persistence.enabled (ne (len .Values.extraVolumeMounts) 0) }}
           volumeMounts:
+            {{- if .Values.persistence.enabled }}
+            - name: h2database-data
+              mountPath: {{ default "/metabase.db" .Values.database.file }}
+            {{- end }}
             {{- if or .Values.log4jProperties .Values.log4j2XML }}
             - name: config
               mountPath: /tmp/conf/
@@ -264,6 +268,14 @@ spec:
       {{- end }}
       serviceAccountName: {{ template "metabase.serviceAccountName" . }}
       volumes:
+        {{- if .Values.persistence.enabled }}
+        - name: h2database-data
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.persistentVolumeClaim.h2database.existingClaim | default (include "metabase.fullname" .) }}
+        {{- else }}
+        - name: h2database-data
+          emptyDir: {}
+        {{- end }}
         {{- if or .Values.log4jProperties .Values.log4j2XML }}
         - name: config
           configMap:

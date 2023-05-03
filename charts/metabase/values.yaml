@@ -212,6 +212,29 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name:
 
+# The persistence is enabled by default and a default StorageClass
+# is needed in the k8s cluster to provision volumes dynamically.
+# Specify another StorageClass in the "storageClass" or set "existingClaim"
+# if you already have existing persistent volumes to use
+persistence:
+  enabled: true
+  # Setting it to "keep" to avoid removing PVCs during a helm delete
+  # operation. Leaving it empty will delete PVCs after the chart deleted
+  resourcePolicy: "keep"
+  persistentVolumeClaim:
+    h2database:
+      # Use the existing PVC which must be created manually before bound,
+      # and specify the "subPath" if the PVC is shared with other components
+      existingClaim: ""
+      # Specify the "storageClass" used to provision the volume. Or the default
+      # StorageClass will be used (the default).
+      # Set it to "-" to disable dynamic provisioning
+      storageClass: ""
+      accessMode: ReadWriteOnce
+      size: 5Gi
+      annotations: {}
+
+
 resources:
   {}
   # We usually recommend not to specify default resources and to leave this as a conscious

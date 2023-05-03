@@ -1,0 +1,31 @@
+{{- if .Values.persistence.enabled }}
+{{- $h2database := .Values.persistence.persistentVolumeClaim.h2database -}}
+{{- if not $h2database.existingClaim }}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ template "metabase.fullname" . }}
+  annotations:
+  {{- range $key, $value := $h2database.annotations }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+  {{- if eq .Values.persistence.resourcePolicy "keep" }}
+    helm.sh/resource-policy: keep
+  {{- end }}
+  labels:
+    component: h2database
+spec:
+  accessModes: 
+    - {{ $h2database.accessMode }}
+  resources:
+    requests:
+      storage: {{ $h2database.size }}
+  {{- if $h2database.storageClass }}
+    {{- if eq "-" $h2database.storageClass }}
+  storageClassName: ""
+    {{- else }}
+  storageClassName: {{ $h2database.storageClass }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+{{- end }}
