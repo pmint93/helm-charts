@@ -1,0 +1,28 @@
+{{- if .Values.pdb.create }}
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ template "metabase.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ template "metabase.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  {{- if .Values.pdb.minAvailable }}
+  minAvailable: {{ .Values.pdb.minAvailable }}
+  {{- end }}
+  {{- if .Values.pdb.maxUnavailable }}
+  maxUnavailable: {{ .Values.pdb.maxUnavailable }}
+  {{- end }}
+  selector:
+    matchLabels:
+      app: {{ template "metabase.name" . }}
+      {{- if .Values.deploymentLabels }}
+{{- toYaml .Values.deploymentLabels | trim | indent 6 }}
+      {{- end }}
+      {{- if .Values.podLabels }}
+{{ toYaml .Values.podLabels | trim | indent 6 }}
+      {{- end }}
+{{- end }}
