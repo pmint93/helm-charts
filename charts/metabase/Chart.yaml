@@ -3,8 +3,8 @@ description:
   The easy, open source way for everyone in your company to ask questions
   and learn from data.
 name: metabase
-version: 2.7.3
-appVersion: v0.46.4
+version: 2.7.4
+appVersion: v0.46.6.1
 maintainers:
   - name: pmint93
     email: phamminhthanh69@gmail.com
