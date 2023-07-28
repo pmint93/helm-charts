@@ -50,7 +50,7 @@ The command removes all the Kubernetes components associated with the chart and 
 The following table lists the configurable parameters of the Metabase chart and their default values.
 
 | Parameter                                       | Description                                                                | Default           |
-|-------------------------------------------------|----------------------------------------------------------------------------|-------------------|
+| ----------------------------------------------- | -------------------------------------------------------------------------- | ----------------- |
 | replicaCount                                    | desired number of controller pods                                          | 1                 |
 | pdb.create                                      | Enable/disable a Pod Disruption Budget creation                            | false             |
 | pdb.minAvailable                                | Minimum number/percentage of pods that should remain scheduled             | 1                 |
@@ -60,7 +60,7 @@ The following table lists the configurable parameters of the Metabase chart and 
 | podAnnotations                                  | controller pods annotations                                                | {}                |
 | podLabels                                       | extra pods labels                                                          | {}                |
 | image.repository                                | controller container image repository                                      | metabase/metabase |
-| image.tag                                       | controller container image tag                                             | v0.46.6.2         |
+| image.tag                                       | controller container image tag                                             | v0.44.7.2         |
 | image.command                                   | controller container image command                                         | []                |
 | image.pullPolicy                                | controller container image pull policy                                     | IfNotPresent      |
 | image.pullSecrets                               | controller container image pull secrets                                    | []                |
@@ -132,7 +132,7 @@ The following table lists the configurable parameters of the Metabase chart and 
 | route.wildcardPolicy                            | Route wildcard policy                                                      | None              |
 | route.tls                                       | Route tls configuration                                                    | {}                |
 | log4j2XML                                       | Custom `log4j2.xml` file                                                   | null              |
-| log4jProperties                                 | DEPRECATED Custom `log4j.properties` file                                             | null              |
+| log4jProperties                                 | DEPRECATED Custom `log4j.properties` file                                  | null              |
 | resources                                       | Server resource requests and limits                                        | {}                |
 | nodeSelector                                    | Node labels for pod assignment                                             | {}                |
 | tolerations                                     | Toleration labels for pod assignment                                       | []                |
