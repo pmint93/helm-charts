@@ -270,3 +270,9 @@ extraEnv: {}
 #      configMapKeyRef:
 #        name: metabase
 #        key: email
+
+envFrom: []
+  # - type: secret
+  #   name: metabase-secret
+  # - type: configMap
+  #   name: metabase-cm
