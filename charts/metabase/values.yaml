@@ -1,7 +1,3 @@
-# Currently Metabase is not horizontly scalable. See
-# https://github.com/metabase/metabase/issues/1446 and
-# https://github.com/metabase/metabase/issues/2754
-# NOTE: Should remain 1
 replicaCount: 1
 
 pdb:
