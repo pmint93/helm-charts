@@ -93,20 +93,32 @@ spec:
           - name: MB_DB_FILE
             value: {{ .Values.database.file }}
           {{- end }}
-          {{- if or .Values.database.existingSecretEncryptionKeyKey .Values.database.encryptionKey }}
+          {{- if and .Values.database.existingSecret .Values.database.existingSecretEncryptionKeyKey }}
           - name: MB_ENCRYPTION_SECRET_KEY
             valueFrom:
               secretKeyRef:
-                name: {{ or .Values.database.existingSecret (printf "%s-database" (include "metabase.fullname" .))}}
-                key: {{ or .Values.database.existingSecretEncryptionKeyKey "encryptionKey" }}
+                name: {{ .Values.database.existingSecret }}
+                key: {{ .Values.database.existingSecretEncryptionKeyKey }}
+          {{- else if .Values.database.encryptionKey }}
+          - name: MB_ENCRYPTION_SECRET_KEY
+            valueFrom:
+              secretKeyRef:
+                name: {{ printf "%s-database" (include "metabase.fullname" .)}}
+                key: encryptionKey"
           {{- end }}
           {{- if ne (.Values.database.type | lower) "h2" }}
-            {{- if or .Values.database.existingSecretConnectionURIKey .Values.database.connectionURI }}
+            {{- if and .Values.database.existingSecret .Values.database.existingSecretConnectionURIKey }}
           - name: MB_DB_CONNECTION_URI
             valueFrom:
               secretKeyRef:
-                name: {{ or .Values.database.existingSecret (printf "%s-database" (include "metabase.fullname" .)) }}
-                key: {{ or .Values.database.existingSecretConnectionURIKey "connectionURI" }}
+                name: {{ .Values.database.existingSecret }}
+                key: {{ .Values.database.existingSecretConnectionURIKey }}
+            {{- else if .Values.database.connectionURI }}
+          - name: MB_DB_CONNECTION_URI
+            valueFrom:
+              secretKeyRef:
+                name: {{ (printf "%s-database" (include "metabase.fullname" .)) }}
+                key: connectionURI
             {{- else }}
           - name: MB_DB_HOST
             value: {{ .Values.database.host | quote }}
@@ -115,19 +127,31 @@ spec:
           - name: MB_DB_DBNAME
             value: {{ .Values.database.dbname | quote }}
             {{- end }}
-            {{- if or .Values.database.existingSecretUsernameKey .Values.database.username }}
+            {{- if and .Values.database.existingSecret .Values.database.existingSecretUsernameKey }}
           - name: MB_DB_USER
             valueFrom:
               secretKeyRef:
-                name: {{ or .Values.database.existingSecret (printf "%s-database" (include "metabase.fullname" .)) }}
-                key: {{ or .Values.database.existingSecretUsernameKey "username" }}
+                name: {{ .Values.database.existingSecret }}
+                key: {{ .Values.database.existingSecretUsernameKey }}
+            {{- else if .Values.database.username }}
+          - name: MB_DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: {{ printf "%s-database" (include "metabase.fullname" .) }}
+                key: username
             {{- end }}
-            {{- if or .Values.database.existingSecretPasswordKey .Values.database.password }}
+            {{- if and .Values.database.existingSecret .Values.database.existingSecretPasswordKey }}
           - name: MB_DB_PASS
             valueFrom:
               secretKeyRef:
-                name: {{ or .Values.database.existingSecret (printf "%s-database" (include "metabase.fullname" .)) }}
-                key: {{ or .Values.database.existingSecretPasswordKey "password" }}
+                name: {{ .Values.database.existingSecret }}
+                key: {{ .Values.database.existingSecretPasswordKey }}
+            {{- else if .Values.database.password }}
+          - name: MB_DB_PASS
+            valueFrom:
+              secretKeyRef:
+                name: {{ (printf "%s-database" (include "metabase.fullname" .)) }}
+                key: password
             {{- end }}
           {{- end }}
           - name: MB_PASSWORD_COMPLEXITY
