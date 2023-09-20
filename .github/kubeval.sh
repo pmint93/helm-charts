@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euxo pipefail
 
-KUBEVAL_VERSION="0.15.0"
+KUBEVAL_VERSION="v0.16.1"
 
 CHART_DIRS="$(git diff --find-renames --name-only "$(git rev-parse --abbrev-ref HEAD)" remotes/origin/master -- charts | cut -d '/' -f 2 | uniq)"
 SCHEMA_LOCATION="https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/"
