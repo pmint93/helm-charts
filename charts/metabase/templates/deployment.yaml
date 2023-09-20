@@ -104,7 +104,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: {{ printf "%s-database" (include "metabase.fullname" .)}}
-                key: encryptionKey"
+                key: encryptionKey
           {{- end }}
           {{- if ne (.Values.database.type | lower) "h2" }}
             {{- if and .Values.database.existingSecret .Values.database.existingSecretConnectionURIKey }}
