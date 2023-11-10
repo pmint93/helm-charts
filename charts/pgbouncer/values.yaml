@@ -2,11 +2,12 @@ replicaCount: 1
 
 databases: {}
   # example: "host=127.0.0.1 port=5432 user=pgbouncer"
+  # "*": "host=127.0.0.1 port=5432"
 
 users: []
   # - name: bob
   #   password: 3obSecretPwd
-  #   options: {}
+  #   options: {} # Override global settings
   #     # pool_mode: transaction
   #     # max_user_connections: 100
 
