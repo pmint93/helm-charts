@@ -6,8 +6,6 @@ Contributions are welcome via GitHub pull requests. This document outlines the p
 
 Isssues or Pull requests to a chart should be created with prefix `[charts/<name>]` eg: `[charts/metabase]`
 
-_For now, there's only one chart, then this is just a best practice_
-
 **Bumping chart version**
 
 Every PR should include chart version bump, because we can not have different version of the charts with the same version name.
