@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "pgbouncer.fullname" . }}-config
+  labels:
+    {{- include "pgbouncer.labels" . | nindent 4 }}
+data:
+  userlist.txt: |-
+{{ include "userlist.txt" . | indent 4 }}
+  pgbouncer.ini: |-
+{{ include "pgbouncer.ini" . | indent 4 }}
+  pgbouncer-other.ini: |-
+{{ include "pgbouncer-other.ini" . | indent 4 }}

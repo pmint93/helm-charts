@@ -8,8 +8,8 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: http
+      targetPort: pgbouncer
       protocol: TCP
-      name: http
+      name: pgbouncer
   selector:
     {{- include "pgbouncer.selectorLabels" . | nindent 4 }}
