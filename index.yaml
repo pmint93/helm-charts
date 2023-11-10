@@ -769,4 +769,19 @@ entries:
     urls:
     - https://github.com/pmint93/helm-charts/releases/download/metabase-0.13.0/metabase-0.13.0.tgz
     version: 0.13.0
+  pgbouncer:
+  - apiVersion: v2
+    appVersion: v1.21.0
+    created: "2023-11-10T08:51:57.140555893Z"
+    description: A Helm chart for Pgbouncer
+    digest: f67b66641813e3c674582f242c1fb5ef06777132e6b6e2d983ba817e3d6eed62
+    home: https://github.com/pmint93/helm-charts
+    maintainers:
+    - name: pmint93
+      url: https://github.com/pmint93
+    name: pgbouncer
+    type: application
+    urls:
+    - https://github.com/pmint93/helm-charts/releases/download/pgbouncer-0.1.0/pgbouncer-0.1.0.tgz
+    version: 0.1.0
 generated: "2020-11-10T13:10:51.457964191Z"
