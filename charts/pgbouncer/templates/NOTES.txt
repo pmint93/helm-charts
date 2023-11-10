@@ -1,0 +1,32 @@
+PgBouncer has been installed!
+
+{{- if contains "NodePort" .Values.service.type }}
+
+PgBouncer is exposed as a `NodePort` type service.
+Get the address by running these commands:
+
+    export NODE_PORT=$(kubectl --namespace {{ .Release.Namespace }} get services -o jsonpath="{.spec.ports[0].nodePort}" {{ include "pgbouncer.fullname" . }})
+    export NODE_IP=$(kubectl --namespace {{ .Release.Namespace }} get nodes -o jsonpath="{.items[0].status.addresses[1].address}")
+
+    echo "Connect to PgBouncer by using IP address: $NODE_IP and port number: $NODE_PORT"
+
+{{- else if contains "LoadBalancer" .Values.service.type }}
+
+PgBouncer is exposed as a `LoadBalancer` type service.
+It may take a few minutes for the LoadBalancer IP to be available.
+You can watch the status of by running 'kubectl get --namespace {{ .Release.Namespace }} svc -w {{ include "pgbouncer.fullname" . }}'
+
+  export SERVICE_IP=$(kubectl get svc --namespace {{ .Release.Namespace }} {{ include "pgbouncer.fullname" . }} --template "{{"{{ range (index .status.loadBalancer.ingress 0) }}{{.}}{{ end }}"}}")
+  echo "Connect to PgBouncer by using IP address: $SERVICE_IP and port number: {{ .Values.service.port }}"
+
+{{- else if contains "ClusterIP" .Values.service.type }}
+
+PgBouncer is exposed as a `ClusterIP` type service.
+Get the address by running these commands:
+
+    export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "pgbouncer.name" . }},app.kubernetes.io/instance={{ .Release.Name }}" -o jsonpath="{.items[0].metadata.name}")
+    export CONTAINER_PORT=$(kubectl get pod --namespace {{ .Release.Namespace }} $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
+    echo "Connect to PgBouncer by using IP address: 127.0.0.1 and port number: 5432"
+    kubectl --namespace {{ .Release.Namespace }} port-forward $POD_NAME 5432:$CONTAINER_PORT
+
+{{- end }}

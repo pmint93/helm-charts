@@ -1,0 +1,10 @@
+apiVersion: v2
+name: pgbouncer
+version: "0.1.0"
+description: A Helm chart for Pgbouncer
+type: application
+home: https://github.com/pmint93/helm-charts
+maintainers:
+- name: pmint93
+  url: https://github.com/pmint93
+appVersion: "v1.21.0"
