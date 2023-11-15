@@ -30,7 +30,7 @@ monitoring:
   serviceMonitor:
     enabled: false
   port: 9191
-  
+
 ssl:
   # If you have an ssl certificate and would prefer to have Metabase run over HTTPS
   enabled: false
