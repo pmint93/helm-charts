@@ -27,7 +27,10 @@ listen:
 
 monitoring:
   enabled: false
+  serviceMonitor:
+    enabled: false
   port: 9191
+
 ssl:
   # If you have an ssl certificate and would prefer to have Metabase run over HTTPS
   enabled: false
@@ -148,6 +151,9 @@ service:
     {}
     # Used to add custom annotations to the Service.
     # service.beta.kubernetes.io/aws-load-balancer-internal: "0.0.0.0/0"
+  loadBalancerSourceRanges:
+    {}
+
 ingress:
   enabled: false
   # The ingress class name, if you use multiple ingress controllers:
