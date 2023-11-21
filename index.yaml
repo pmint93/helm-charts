@@ -788,6 +788,20 @@ entries:
   pgbouncer:
   - apiVersion: v2
     appVersion: v1.21.0
+    created: "2023-11-21T17:59:30.131621951Z"
+    description: A Helm chart for Pgbouncer
+    digest: 2ea32a53a0328fb3e4f48a14ad1ca893c7396891239882c596d060628d55fa46
+    home: https://github.com/pmint93/helm-charts
+    maintainers:
+    - name: pmint93
+      url: https://github.com/pmint93
+    name: pgbouncer
+    type: application
+    urls:
+    - https://github.com/pmint93/helm-charts/releases/download/pgbouncer-0.1.1/pgbouncer-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: v1.21.0
     created: "2023-11-10T08:51:57.140555893Z"
     description: A Helm chart for Pgbouncer
     digest: f67b66641813e3c674582f242c1fb5ef06777132e6b6e2d983ba817e3d6eed62
