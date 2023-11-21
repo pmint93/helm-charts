@@ -278,3 +278,8 @@ envFrom: []
   #   name: metabase-secret
   # - type: configMap
   #   name: metabase-cm
+
+metabaseSecurityContext: {}
+  
+cloudsqlSecurityContext:
+  runAsNonRoot: true

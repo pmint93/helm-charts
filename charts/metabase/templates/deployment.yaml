@@ -213,6 +213,10 @@ spec:
             - containerPort: {{ .Values.monitoring.port }}
               name: metrics
             {{- end }}
+          {{- if .Values.metabaseSecurityContext}}
+          securityContext: 
+          {{- .Values.metabaseSecurityContext | toYaml | nindent 12 }}
+          {{- end }}
           livenessProbe:
             httpGet:
               path: {{ .Values.livenessProbe.path }}
@@ -250,7 +254,7 @@ spec:
             - "-use_http_health_check"
             - "-enable_iam_login"
           securityContext:
-            runAsNonRoot: true
+          {{- .Values.cloudsqlSecurityContext | toYaml | nindent 12 }}
           livenessProbe:
             httpGet:
               path: /liveness
