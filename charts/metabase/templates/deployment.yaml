@@ -278,6 +278,7 @@ spec:
           resources:
 {{ toYaml .Values.database.googleCloudSQL.resources | indent 12 }}
         {{- end }}
+        {{ toYaml .Values.sidecars | nindent 8 }}
     {{- with .Values.nodeSelector }}
       nodeSelector:
 {{ toYaml . | indent 8 }}
