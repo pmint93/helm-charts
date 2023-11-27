@@ -81,6 +81,8 @@ database:
     # sidecarImageTag: latest
     ## ref: https://cloud.google.com/sql/docs/postgres/connect-kubernetes-engine#running_the_as_a_sidecar
     resources: {}
+    securityContext:
+      runAsNonRoot: true
 
 password:
   # Changing Metabase password complexity:
@@ -279,11 +281,8 @@ envFrom: []
   # - type: configMap
   #   name: metabase-cm
 
-metabaseSecurityContext: {}
+securityContext: {}
   
-cloudsqlSecurityContext:
-  runAsNonRoot: true
-
 sidecars: []
   # - name: busybox
   #   image: busybox
