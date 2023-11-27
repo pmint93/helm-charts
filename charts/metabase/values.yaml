@@ -283,3 +283,19 @@ metabaseSecurityContext: {}
   
 cloudsqlSecurityContext:
   runAsNonRoot: true
+
+sidecars: []
+  # - name: busybox
+  #   image: busybox
+  #   ports:
+  #     - containerPort: 80
+  #       name: http
+  #   resources:
+  #     requests:
+  #       memory: 100Mi
+  #       cpu: 10m
+  #     limits:
+  #       memory: 100Mi
+  #       cpu: 10m
+  #   command: ["/bin/sh"]
+  #   args: ["-c", "while true; do echo hello; sleep 10;done"]

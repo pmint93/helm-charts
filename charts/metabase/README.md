@@ -50,7 +50,7 @@ The command removes all the Kubernetes components associated with the chart and 
 The following table lists the configurable parameters of the Metabase chart and their default values.
 
 | Parameter                                       | Description                                                                | Default           |
-| ----------------------------------------------- | -------------------------------------------------------------------------- | ----------------- |
+|-------------------------------------------------|----------------------------------------------------------------------------|-------------------|
 | replicaCount                                    | desired number of controller pods                                          | 1                 |
 | pdb.create                                      | Enable/disable a Pod Disruption Budget creation                            | false             |
 | pdb.minAvailable                                | Minimum number/percentage of pods that should remain scheduled             | 1                 |
@@ -60,7 +60,7 @@ The following table lists the configurable parameters of the Metabase chart and 
 | podAnnotations                                  | controller pods annotations                                                | {}                |
 | podLabels                                       | extra pods labels                                                          | {}                |
 | image.repository                                | controller container image repository                                      | metabase/metabase |
-| image.tag                                       | controller container image tag                                             | v0.47.2         |
+| image.tag                                       | controller container image tag                                             | v0.47.2           |
 | image.command                                   | controller container image command                                         | []                |
 | image.pullPolicy                                | controller container image pull policy                                     | IfNotPresent      |
 | image.pullSecrets                               | controller container image pull secrets                                    | []                |
@@ -147,5 +147,6 @@ The following table lists the configurable parameters of the Metabase chart and 
 | session.sessionCookies                          | When browser is closed, user login session will expire                     | null              |
 | extraEnv                                        | Mapping of extra environment variables                                     | {}                |
 | envFrom                                         | Mapping of extra environment variables from secret and/or configMap        | []                |
+| sidecars                                        | Mapping of container sidecars for the main deployment                      | []                |
 
 The above parameters map to the env variables defined in [metabase](http://github.com/metabase/metabase). For more information please refer to the [metabase documentations](https://www.metabase.com/docs/v0.41/operations-guide/environment-variables.html).
