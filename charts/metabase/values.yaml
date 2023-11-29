@@ -282,7 +282,7 @@ envFrom: []
   #   name: metabase-cm
 
 securityContext: {}
-  
+
 sidecars: []
   # - name: busybox
   #   image: busybox
