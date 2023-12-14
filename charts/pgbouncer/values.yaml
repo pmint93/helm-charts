@@ -32,6 +32,8 @@ settings:
   # In order to use auth_query, auth_user must be set
   auth_query: "SELECT usename, passwd FROM pg_shadow WHERE usename=$1"
   pool_mode: session
+  admin_users: ""  # Comma-separated list of database users that are allowed to connect and run all commands on the console
+  stats_users: ""  # Comma-separated list of database users that are allowed to connect and run read-only queries on the console, eg: SHOW STATS
 
 extraSettings:
   ignore_startup_parameters: extra_float_digits
