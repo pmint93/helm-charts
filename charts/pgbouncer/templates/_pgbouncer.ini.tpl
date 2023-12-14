@@ -152,10 +152,10 @@ auth_query = {{ . }}
 ;;;
 
 ;; comma-separated list of users who are allowed to change settings
-;admin_users = user2, someadmin, otheradmin
+admin_users = {{ .Values.settings.admin_users }}
 
 ;; comma-separated list of users who are just allowed to use SHOW command
-;stats_users = stats, root
+stats_users = {{ .Values.settings.stats_users }}
 
 ;;;
 ;;; Pooler personality questions
