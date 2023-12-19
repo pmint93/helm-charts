@@ -47,4 +47,6 @@ spec:
   to:
     kind: Service
     name: {{ $serviceName }}
+  port:
+    targetPort: {{ .Values.service.name }}
 {{- end }}
