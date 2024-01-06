@@ -11,8 +11,9 @@ metadata:
     heritage: {{ .Release.Service }}
 spec:
   selector:
-    app: {{ template "metabase.name" . }}
-    release: {{ .Release.Name }}
+    matchLabels:
+      app: {{ template "metabase.name" . }}
+      release: {{ .Release.Name }}
   endpoints:
     - path: /metrics
       port: metrics
