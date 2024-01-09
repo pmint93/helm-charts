@@ -87,3 +87,9 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+serviceAccount:
+  enable: false
+  # name: saName
+  # annotations:
+  #   iam.gke.io/gcp-service-account: sa-name@project.iam.gserviceaccount.com

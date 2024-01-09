@@ -76,3 +76,6 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- if .Values.serviceAccount.enable }}
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      {{- end }}
