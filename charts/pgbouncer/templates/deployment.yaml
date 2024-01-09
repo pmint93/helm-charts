@@ -60,6 +60,9 @@ spec:
             - name: config
               readOnly: true
               mountPath: /etc/pgbouncer/
+        {{- range .Values.sidecars }}
+        - {{- toYaml . | nindent 10 }}
+        {{- end }}
       volumes:
         - name: config
           configMap:
