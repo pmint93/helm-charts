@@ -87,3 +87,17 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+serviceAccount:
+  enable: false
+  # name: saName
+  # annotations:
+  #   iam.gke.io/gcp-service-account: sa-name@project.iam.gserviceaccount.com
+
+sidecars: []
+#  - name: mySidecar
+#    image: repo/image:tag
+#    imagePullPolicy: IfNotPresent
+#    args:
+#      - --foo
+#      - --bar

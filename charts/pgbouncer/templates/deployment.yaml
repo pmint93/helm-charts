@@ -60,6 +60,9 @@ spec:
             - name: config
               readOnly: true
               mountPath: /etc/pgbouncer/
+        {{- range .Values.sidecars }}
+        - {{- toYaml . | nindent 10 }}
+        {{- end }}
       volumes:
         - name: config
           configMap:
@@ -75,4 +78,7 @@ spec:
       {{- with .Values.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.serviceAccount.enable }}
+      serviceAccountName: {{ .Values.serviceAccount.name }}
       {{- end }}
