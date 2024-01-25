@@ -90,7 +90,8 @@ affinity: {}
 
 serviceAccount:
   enable: false
-  # name: saName
+  name: pgbouncer
+  # existingServiceAccountName: ""
   # annotations:
   #   iam.gke.io/gcp-service-account: sa-name@project.iam.gserviceaccount.com
 

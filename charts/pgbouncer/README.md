@@ -72,8 +72,9 @@ The following table lists the configurable parameters of the chart and their def
 | affinity                                  | object    | `{}`                                                              | Affinity settings for pod assignment                                                                  |
 | serviceAccount                            | object    | `{enable: false}`                                                 | Service account's definition                                                                          |
 | serviceAccount.enable                     | bool      | `false`                                                           | Service account's section flag                                                                        |
-| serviceAccount.name                       | string    | `""`                                                              | Service account's name                                                                                |
+| serviceAccount.name                       | string    | `"pgbouncer"`                                                     | Service account's name                                                                                |
 | serviceAccount.annotations                | object    | `{}`                                                              | Service account's annotations                                                                         |
 | sidecars                                  | list      | `[]`                                                              | Sidecars raw definition                                                                               |
+| serviceAccount.existingServiceAccountName | string    | `""`                                                              | Do not create a KSA but use an existing one                                                           |
 
 To better understand PgBouncer configuration, please refer to [this document](https://www.pgbouncer.org/config.html)
