@@ -60,7 +60,7 @@ The following table lists the configurable parameters of the Metabase chart and 
 | podAnnotations                                  | controller pods annotations                                                | {}                |
 | podLabels                                       | extra pods labels                                                          | {}                |
 | image.repository                                | controller container image repository                                      | metabase/metabase |
-| image.tag                                       | controller container image tag                                             | v0.47.2           |
+| image.tag                                       | controller container image tag                                             | v0.48.3           |
 | image.command                                   | controller container image command                                         | []                |
 | image.pullPolicy                                | controller container image pull policy                                     | IfNotPresent      |
 | image.pullSecrets                               | controller container image pull secrets                                    | []                |
