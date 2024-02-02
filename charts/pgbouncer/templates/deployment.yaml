@@ -4,6 +4,10 @@ metadata:
   name: {{ include "pgbouncer.fullname" . }}
   labels:
     {{- include "pgbouncer.labels" . | nindent 4 }}
+  {{- with .Values.deploymentAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 8 }}
+  {{- end }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
