@@ -10,4 +10,4 @@ data:
   pgbouncer.ini: |-
 {{ include "pgbouncer.ini" . | indent 4 }}
   pgbouncer-other.ini: |-
-{{ include "pgbouncer-other.ini" . | indent 4 }}
+{{- include "pgbouncer-other.ini" . | indent 4 }}
