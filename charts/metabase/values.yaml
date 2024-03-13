@@ -253,6 +253,10 @@ tolerations: []
 ##
 affinity: {}
 
+## Spread Constraints for pod assignment
+## ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/
+topologySpreadConstraints: []
+
 ## PriorityClass for pod assignment
 ## ref:
 ## https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#pod-priority
