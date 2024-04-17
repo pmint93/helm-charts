@@ -11,7 +11,8 @@ podAnnotations: {}
 podLabels: {}
 image:
   repository: metabase/metabase
-  tag: v0.49.3
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
   command: []
   pullPolicy: IfNotPresent
   pullSecrets: []
