@@ -159,6 +159,8 @@ service:
     # Used to add custom labels to the Service.
   loadBalancerSourceRanges:
     {}
+  # Used to configure a static IP address
+  loadBalancerIP:
 
 ingress:
   enabled: false
