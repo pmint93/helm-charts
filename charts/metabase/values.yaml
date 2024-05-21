@@ -1,5 +1,12 @@
 replicaCount: 1
 
+hpa:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 6
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+
 pdb:
   create: false
   minAvailable: 1
