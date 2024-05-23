@@ -3,6 +3,22 @@ entries:
   metabase:
   - apiVersion: v1
     appVersion: v0.49.11
+    created: "2024-05-23T13:01:32.886702874Z"
+    description: The easy, open source way for everyone in your company to ask questions and learn from data.
+    digest: e7175a06ef82f94a1c78d84f66f9c379341feb50a4b70acae4e10cde1631374f
+    home: http://www.metabase.com/
+    icon: http://www.metabase.com/images/logo.svg
+    maintainers:
+    - email: phamminhthanh69@gmail.com
+      name: pmint93
+    name: metabase
+    sources:
+    - https://github.com/metabase/metabase
+    urls:
+    - https://github.com/pmint93/helm-charts/releases/download/metabase-2.15.4/metabase-2.15.4.tgz
+    version: 2.15.4
+  - apiVersion: v1
+    appVersion: v0.49.11
     created: "2024-05-16T09:24:39.089655186Z"
     description: The easy, open source way for everyone in your company to ask questions and learn from data.
     digest: 96fee510daab04948b3af2d752abd9ec8cf1e1b64f1278aa84ec453856fbe9b2
