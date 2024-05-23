@@ -304,7 +304,7 @@ spec:
 {{ toYaml . | indent 8 }}
     {{- end }}
       {{- if .Values.priorityClass}}
-      priorityClass: {{ .Values.priorityClass }}
+      priorityClassName: {{ .Values.priorityClass }}
       {{- end }}
       serviceAccountName: {{ template "metabase.serviceAccountName" . }}
       volumes:
