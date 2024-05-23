@@ -19,7 +19,9 @@ spec:
   selector:
     matchLabels:
       app: {{ template "metabase.name" . }}
+  {{ if not .Values.hpa.enabled }}
   replicas: {{ .Values.replicaCount }}
+  {{ end }}
   {{- with .Values.strategy }}
   strategy:
 {{ toYaml . | trim | indent 4 }}
