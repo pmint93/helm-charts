@@ -307,6 +307,7 @@ spec:
       priorityClassName: {{ .Values.priorityClass }}
       {{- end }}
       serviceAccountName: {{ template "metabase.serviceAccountName" . }}
+      automountServiceAccountToken: {{ .Values.automountServiceAccountToken }}
       volumes:
         {{- if or .Values.log4jProperties .Values.log4j2XML }}
         - name: config
