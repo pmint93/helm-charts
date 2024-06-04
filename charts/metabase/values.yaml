@@ -1,7 +1,7 @@
 replicaCount: 1
 
 hpa:
-  enabled: true
+  enabled: false
   minReplicas: 1
   maxReplicas: 6
   targetCPUUtilizationPercentage: 80
