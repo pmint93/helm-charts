@@ -234,6 +234,10 @@ serviceAccount:
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
   name:
+  # autoMount is deprecated in favor of automountServiceAccountToken
+  # If you want to disable auto mount of Service Account Token then you can set the value to false;
+  # https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#opt-out-of-api-credential-automounting
+  automountServiceAccountToken: false
 
 resources:
   {}
@@ -247,6 +251,10 @@ resources:
   # requests:
   #  cpu: 100m
   #  memory: 128Mi
+
+# You can also opt out of automounting API credentials for a particular Pod;
+# https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#opt-out-of-api-credential-automounting
+automountServiceAccountToken: true
 
 ## Node labels for pod assignment
 ## ref: https://kubernetes.io/docs/user-guide/node-selection/
