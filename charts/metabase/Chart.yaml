@@ -4,11 +4,7 @@ description:
   and learn from data.
 name: metabase
 version: 2.15.8
-<<<<<<< HEAD
-appVersion: v0.49.12
-=======
 appVersion: v0.49.13
->>>>>>> 1e22207 (bump the chart version)
 maintainers:
   - name: pmint93
     email: phamminhthanh69@gmail.com
