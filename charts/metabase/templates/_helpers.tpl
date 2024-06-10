@@ -36,6 +36,17 @@ Return the apiVersion of deployment.
 {{- end -}}
 
 {{/*
+Return the apiVersion of hpa.
+*/}}
+{{- define "hpa.apiVersion" -}}
+{{- if semverCompare "<1.23-0" .Capabilities.KubeVersion.GitVersion -}}
+{{- print "autoscaling/v1" -}}
+{{- else if semverCompare ">=1.23-0" .Capabilities.KubeVersion.GitVersion -}}
+{{- print "autoscaling/v2" -}}
+{{- end -}}
+{{- end -}}
+
+{{/*
 Create the name of the service account to use
 */}}
 {{- define "metabase.serviceAccountName" -}}
