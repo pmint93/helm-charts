@@ -303,6 +303,10 @@ spec:
       topologySpreadConstraints:
 {{ toYaml . | indent 8 }}
     {{- end }}
+    {{- with .Values.hostAliases }}
+      hostAliases:
+{{ toYaml . | indent 8 }}
+    {{- end }}
       {{- if .Values.priorityClass}}
       priorityClassName: {{ .Values.priorityClass }}
       {{- end }}
