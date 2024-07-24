@@ -187,6 +187,15 @@ ingress:
   # The ingress path. Useful to host metabase on a subpath, such as `/metabase`.
   path: /
   pathType: Prefix
+  # Additional ingress paths
+  extraPaths: []
+    # - path: /*
+    #   pathType: Prefix
+    #   backend:
+    #     service:
+    #       name: ssl-redirect
+    #       port:
+    #         name: use-annotation
   labels:
     # Used to add custom labels to the Ingress
     # Useful if for example you have multiple Ingress controllers and want your Ingress controllers to bind to specific Ingresses
