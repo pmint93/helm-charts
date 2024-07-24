@@ -30,6 +30,9 @@ spec:
     - host: {{ $host | quote }}
       http:
         paths:
+          {{- with $.Values.ingress.extraPaths }}
+            {{- toYaml . | nindent 10 }}
+          {{- end }}
           - path: {{ $ingressPath }}
             pathType: {{ $ingressPathType }}
             backend:
