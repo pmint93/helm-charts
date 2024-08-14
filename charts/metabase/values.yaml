@@ -80,6 +80,9 @@ database:
   # existingSecretPasswordKey:
   # existingSecretConnectionURIKey:
   # existingSecretEncryptionKeyKey:
+  # existingSecretPortKey:
+  # existingSecretHostKey:
+  # existingSecretDatabaseNameKey:
   ## One or more Google Cloud SQL database instances can be made available to Metabase via the *Cloud SQL Auth proxy*.
   ## These can be used for Metabase's internal database (by specifying `host: localhost` and the port above), or as
   ## additional databases (configured at Admin → Databases). Workload Identity should be used for authentication, so
