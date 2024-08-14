@@ -143,7 +143,7 @@ spec:
             value: {{ .Values.database.port | quote }}
             {{- end}}
             {{- if and .Values.database.existingSecret .Values.database.existingSecretDatabaseNameKey }}
-          - name: MB_DB_HOST
+          - name: MB_DB_DBNAME
             valueFrom:
               secretKeyRef:
                 name: {{ .Values.database.existingSecret }}
