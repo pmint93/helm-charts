@@ -122,12 +122,36 @@ spec:
                 name: {{ (printf "%s-database" (include "metabase.fullname" .)) }}
                 key: connectionURI
             {{- else }}
+            {{- if and .Values.database.existingSecret .Values.database.existingSecretHostKey }}
+          - name: MB_DB_HOST
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.database.existingSecret }}
+                key: {{ .Values.database.existingSecretHostKey }}
+            {{- else }}
           - name: MB_DB_HOST
             value: {{ .Values.database.host | quote }}
+            {{- end }}
+            {{- if and .Values.database.existingSecret .Values.database.existingSecretPortKey }}
+          - name: MB_DB_PORT
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.database.existingSecret }}
+                key: {{ .Values.database.existingSecretPortKey }}
+            {{- else }}
           - name: MB_DB_PORT
             value: {{ .Values.database.port | quote }}
+            {{- end}}
+            {{- if and .Values.database.existingSecret .Values.database.existingSecretDatabaseNameKey }}
+          - name: MB_DB_DBNAME
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.database.existingSecret }}
+                key: {{ .Values.database.existingSecretDatabaseNameKey }}
+            {{- else }}
           - name: MB_DB_DBNAME
             value: {{ .Values.database.dbname | quote }}
+            {{- end }}
             {{- end }}
             {{- if and .Values.database.existingSecret .Values.database.existingSecretUsernameKey }}
           - name: MB_DB_USER
