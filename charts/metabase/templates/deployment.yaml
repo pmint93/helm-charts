@@ -313,7 +313,7 @@ spec:
         {{- end }}
     {{- if .Values.podSecurityContext}}
       securityContext:
-    {{- .Values.securityContext | toYaml | nindent 8 }}
+    {{- .Values.podSecurityContext | toYaml | nindent 8 }}
     {{- with .Values.nodeSelector }}
       nodeSelector:
 {{ toYaml . | indent 8 }}
