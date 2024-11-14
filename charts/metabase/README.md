@@ -151,6 +151,7 @@ The following table lists the configurable parameters of the Metabase chart and 
 | extraEnv                                        | Mapping of extra environment variables                                     | {}                |
 | envFrom                                         | Mapping of extra environment variables from secret and/or configMap        | []                |
 | sidecars                                        | Mapping of container sidecars for the main deployment                      | []                |
-| securityContext                                 | Security Context for the Metabase pod                                      | {}                | 
+| securityContext                                 | Security Context for the Metabase container                                | {}                |
+| podSecurityContext                              | Security Context for the Metabase pod                                      | {}                |
 
 The above parameters map to the env variables defined in [metabase](http://github.com/metabase/metabase). For more information please refer to the [metabase documentations](https://www.metabase.com/docs/v0.41/operations-guide/environment-variables.html).
