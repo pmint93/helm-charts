@@ -311,6 +311,10 @@ spec:
         {{- if .Values.sidecars }}
         {{ toYaml .Values.sidecars | nindent 8 }}
         {{- end }}
+    {{- if .Values.podSecurityContext}}
+      securityContext:
+    {{- .Values.podSecurityContext | toYaml | nindent 8 }}
+    {{- end }}
     {{- with .Values.nodeSelector }}
       nodeSelector:
 {{ toYaml . | indent 8 }}
