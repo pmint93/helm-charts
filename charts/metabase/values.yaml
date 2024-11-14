@@ -23,6 +23,7 @@ deploymentAnnotations: {}
 deploymentLabels: {}
 podAnnotations: {}
 podLabels: {}
+podSecurityContext: {}
 image:
   repository: metabase/metabase
   # Overrides the image tag whose default is the chart appVersion.
