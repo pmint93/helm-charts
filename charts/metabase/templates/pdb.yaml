@@ -20,7 +20,7 @@ spec:
     matchLabels:
       app: {{ template "metabase.name" . }}
       {{- if .Values.deploymentLabels }}
-{{- toYaml .Values.deploymentLabels | trim | indent 6 }}
+{{ toYaml .Values.deploymentLabels | trim | indent 6 }}
       {{- end }}
       {{- if .Values.podLabels }}
 {{ toYaml .Values.podLabels | trim | indent 6 }}
