@@ -302,7 +302,7 @@ awsEKS:
     #   - sg-abc123
     #   - sg-xyz456
 
-extraEnv: {}
+extraEnv: []
 #  - name: MB_CHECK_FOR_UPDATES
 #    value: false
 #  - name: MB_ADMIN_EMAIL
