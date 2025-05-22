@@ -72,9 +72,33 @@ updateStrategy:
   rollingUpdate:
     maxUnavailable: 0
 
+lifecycleHooks: {}
+  # preStop:
+  #   exec:
+  #     command:
+  #       - /bin/sh
+  #       - -c
+  #       - "sleep 10"
+  # postStart:
+  #   exec:
+  #     command:
+  #       - /bin/sh
+  #       - -c
+  #       - "echo 'Container started'"
+
+extraContainerPorts: []
+  # - name: pgbouncer
+  #   containerPort: 5432
+  #   protocol: TCP
+
 service:
   type: ClusterIP
   port: 5432
+  extraPorts: []
+  # - port: 12345
+  #   targetPort: pgbouncer
+  #   protocol: TCP
+  #   name: pgbouncer
 
 resources: {}
   # limits:
@@ -104,3 +128,5 @@ sidecars: []
 #    args:
 #      - --foo
 #      - --bar
+
+terminationGracePeriodSeconds: ""

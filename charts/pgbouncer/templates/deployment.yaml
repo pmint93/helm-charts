@@ -48,6 +48,9 @@ spec:
             - name: pgbouncer
               containerPort: 5432
               protocol: TCP
+          {{- if .Values.extraContainerPorts }}
+          {{- toYaml .Values.extraContainerPorts | nindent 12 }}
+          {{- end }}
           readinessProbe:
             tcpSocket:
               port: pgbouncer
@@ -64,6 +67,9 @@ spec:
             - name: config
               readOnly: true
               mountPath: /etc/pgbouncer/
+        {{- with .Values.lifecycleHooks }}
+          lifecycle: {{ toYaml . | nindent 12 }}
+        {{- end }}
         {{- range .Values.sidecars }}
         - {{- toYaml . | nindent 10 }}
         {{- end }}
@@ -85,4 +91,7 @@ spec:
       {{- end }}
       {{- if .Values.serviceAccount.enable }}
       serviceAccountName: {{ .Values.serviceAccount.existingServiceAccountName | default .Values.serviceAccount.name }}
+      {{- end }}
+      {{- if .Values.terminationGracePeriodSeconds }}
+      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
       {{- end }}

@@ -11,5 +11,8 @@ spec:
       targetPort: pgbouncer
       protocol: TCP
       name: pgbouncer
+{{- if .Values.service.extraPorts }}
+{{ toYaml .Values.service.extraPorts | indent 4 }}
+{{- end }}
   selector:
     {{- include "pgbouncer.selectorLabels" . | nindent 4 }}
