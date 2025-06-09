@@ -34,9 +34,17 @@ settings:
   pool_mode: session
   admin_users: ""  # Comma-separated list of database users that are allowed to connect and run all commands on the console
   stats_users: ""  # Comma-separated list of database users that are allowed to connect and run read-only queries on the console, eg: SHOW STATS
+  client_tls_sslmode: disable
+  client_tls_ca_file: null
+  client_tls_key_file: null
+  client_tls_cert_file: null
 
 extraSettings:
   ignore_startup_parameters: extra_float_digits
+
+existingSecrets: []
+# - name: my-cert-secret
+#   mountPath: /etc/certs
 
 image:
   repository: hyperized/pgbouncer

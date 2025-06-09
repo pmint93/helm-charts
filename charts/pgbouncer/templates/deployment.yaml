@@ -64,6 +64,11 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
+            {{- range $i, $secret := .Values.existingSecrets }}
+            - name: volume-{{ $i }}
+              mountPath: {{ $secret.mountPath }}
+              readOnly: true
+            {{- end }}
             - name: config
               readOnly: true
               mountPath: /etc/pgbouncer/
@@ -74,6 +79,11 @@ spec:
         - {{- toYaml . | nindent 10 }}
         {{- end }}
       volumes:
+        {{- range $i, $secret := .Values.existingSecrets }}
+        - name: volume-{{ $i }}
+          secret:
+            secretName: {{ $secret.name }}
+        {{- end }}
         - name: config
           configMap:
             name: {{ include "pgbouncer.fullname" . }}-config
