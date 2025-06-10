@@ -88,10 +88,10 @@ client_tls_ca_file =  {{ .Values.settings.client_tls_ca_file }}
 {{- end }}
 ;; Private key and cert to present to clients.
 ;; Required for accepting TLS connections from clients.
-{{- if  .Values.client_tls_key_file }}
+{{- if  .Values.settings.client_tls_key_file }}
 client_tls_key_file = {{ .Values.settings.client_tls_key_file }}
 {{- end }}
-{{- if .Values.client_tls_cert_file }}
+{{- if .Values.settings.client_tls_cert_file }}
 client_tls_cert_file = {{ .Values.settings.client_tls_cert_file }}
 {{- end }}
 ;; default, secure, fast, normal, <ciphersuite string>
