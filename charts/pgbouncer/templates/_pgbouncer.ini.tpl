@@ -80,19 +80,19 @@ listen_port = 5432
 ;;;
 
 ;; disable, allow, require, verify-ca, verify-full
-client_tls_sslmode = {{ .Values.client_tls_sslmode }}
+client_tls_sslmode = {{ .Values.settings.client_tls_sslmode }}
 
 {{- if  .Values.client_tls_ca_file }}
 ;; Path to file that contains trusted CA certs
-client_tls_ca_file =  {{ .Values.client_tls_ca_file }}
+client_tls_ca_file =  {{ .Values.settings.client_tls_ca_file }}
 {{- end }}
 ;; Private key and cert to present to clients.
 ;; Required for accepting TLS connections from clients.
 {{- if  .Values.client_tls_key_file }}
-client_tls_key_file = {{ .Values.client_tls_key_file }}
+client_tls_key_file = {{ .Values.settings.client_tls_key_file }}
 {{- end }}
 {{- if .Values.client_tls_cert_file }}
-client_tls_cert_file = {{ .Values.client_tls_cert_file }}
+client_tls_cert_file = {{ .Values.settings.client_tls_cert_file }}
 {{- end }}
 ;; default, secure, fast, normal, <ciphersuite string>
 ;client_tls_ciphers = default
