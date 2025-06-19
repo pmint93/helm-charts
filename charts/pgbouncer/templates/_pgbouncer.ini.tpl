@@ -82,7 +82,7 @@ listen_port = 5432
 ;; disable, allow, require, verify-ca, verify-full
 client_tls_sslmode = {{ .Values.settings.client_tls_sslmode }}
 
-{{- if  .Values.client_tls_ca_file }}
+{{- if  .Values.settings.client_tls_ca_file }}
 ;; Path to file that contains trusted CA certs
 client_tls_ca_file =  {{ .Values.settings.client_tls_ca_file }}
 {{- end }}
