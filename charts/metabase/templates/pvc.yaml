@@ -1,0 +1,36 @@
+{{- if and  .Values.database.persistence.enabled (not .Values.database.persistence.existingClaim) (eq .Values.database.persistence.type "pvc")}}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ template "metabase.fullname" . }}-database
+  labels:
+    {{- include "metabase.labels" . | nindent 4 }}
+    {{- with .Values.database.persistence.extraPvcLabels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  {{- with .Values.database.persistence.annotations  }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- with .Values.database.persistence.finalizers  }}
+  finalizers:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.database.persistence.size | quote }}
+  {{- if and (.Values.database.persistence.lookupVolumeName) (lookup "v1" "PersistentVolumeClaim" (include "metabase.namespace" .) (include "metabase.fullname" .)) }}
+  volumeName: {{ (lookup "v1" "PersistentVolumeClaim" (include "metabase.namespace" .) (include "metabase.fullname" .)).spec.volumeName }}
+  {{- end }}
+  {{- with .Values.database.persistence.storageClassName }}
+  storageClassName: {{ . }}
+  {{- end }}
+  {{- with .Values.database.persistence.selectorLabels }}
+  selector:
+    matchLabels:
+    {{- toYaml . | nindent 6 }}
+  {{- end }}
+{{- end }}

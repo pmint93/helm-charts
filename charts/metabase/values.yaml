@@ -64,6 +64,31 @@ jetty:
 database:
   # Database type (h2 / mysql / postgres), default: h2
   type: h2
+  # if h2 is used, the persistentVolume and pvc are used to store the database. Only for non-production environments.
+  persistence:
+    type: pvc
+    enabled: true
+    # storageClassName: default
+    ## (Optional) Use this to bind the claim to an existing PersistentVolume (PV) by name.
+    volumeName: ""
+    accessModes:
+      - ReadWriteOnce
+    size: 10Gi
+    # annotations: {}
+    finalizers:
+      - kubernetes.io/pvc-protection
+    # selectorLabels: {}
+    ## Sub-directory of the PV to mount. Can be templated.
+    # subPath: ""
+    ## Name of an existing PVC. Can be templated.
+    # existingClaim:
+    ## Extra labels to apply to a PVC.
+    extraPvcLabels: {}
+    disableWarning: false
+
+    ## If 'lookupVolumeName' is set to true, Helm will attempt to retrieve
+    ## the current value of 'spec.volumeName' and incorporate it into the template.
+    lookupVolumeName: true
   ## Specify file to store H2 database.  You will also have to back this with a volume (cf. extraVolume and extraVolumeMounts)!
   # file:
   # encryptionKey: << YOUR ENCRYPTION KEY OR LEAVE BLANK AND USE EXISTING SECRET >>
