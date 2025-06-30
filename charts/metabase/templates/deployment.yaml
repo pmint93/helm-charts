@@ -257,8 +257,12 @@ spec:
             initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
             timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
             periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
-          {{- if or .Values.log4jProperties .Values.log4j2XML (ne (len .Values.extraVolumeMounts) 0) }}
+          {{- if or .Values.log4jProperties .Values.log4j2XML (ne (len .Values.extraVolumeMounts) 0) .Values.database.persistence.enabled }}
           volumeMounts:
+            {{- if .Values.database.persistence.enabled }}
+            - name: {{ template "metabase.fullname" . }}-database
+              mountPath: /metabase.db/
+            {{- end }}
             {{- if or .Values.log4jProperties .Values.log4j2XML }}
             - name: config
               mountPath: /tmp/conf/
@@ -341,6 +345,11 @@ spec:
       serviceAccountName: {{ template "metabase.serviceAccountName" . }}
       automountServiceAccountToken: {{ .Values.automountServiceAccountToken }}
       volumes:
+        {{- if .Values.database.persistence.enabled }}
+        - name: {{ template "metabase.fullname" . }}-database
+          persistentVolumeClaim:
+            claimName: {{ template "metabase.fullname" . }}-database
+        {{- end }}
         {{- if or .Values.log4jProperties .Values.log4j2XML }}
         - name: config
           configMap:
