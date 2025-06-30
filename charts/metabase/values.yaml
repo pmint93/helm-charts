@@ -67,7 +67,7 @@ database:
   # if h2 is used, the persistentVolume and pvc are used to store the database. Only for non-production environments.
   persistence:
     type: pvc
-    enabled: true
+    enabled: false
     # storageClassName: default
     ## (Optional) Use this to bind the claim to an existing PersistentVolume (PV) by name.
     volumeName: ""
