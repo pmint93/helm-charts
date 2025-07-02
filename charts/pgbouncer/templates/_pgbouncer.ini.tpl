@@ -233,7 +233,7 @@ reserve_pool_size = {{ .Values.connectionLimits.reserve_pool_size }}
 reserve_pool_timeout = {{ .Values.connectionLimits.reserve_pool_timeout }}
 
 ;; Maximum number of server connections for a database
-;max_db_connections = 0
+max_db_connections = {{ .Values.connectionLimits.max_db_connections }}
 
 ;; Maximum number of server connections for a user
 ;max_user_connections = 0
