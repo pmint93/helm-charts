@@ -12,7 +12,7 @@ users: []
   #     # max_user_connections: 100
 
 connectionLimits:
-  max_db_connections: 200
+#  max_db_connections: 200
   max_client_conn: 200
   default_pool_size: 20
   min_pool_size: 15
