@@ -1,0 +1,16 @@
+{{- define "single-deployment.service.data" -}}
+name: {{ template "single-deployment.fullname" . }}
+selector:
+  {{- include "single-deployment.selectorLabels" . | nindent 2 }}
+
+ports:
+{{- range $port := .Values.service.ports }}
+- name: {{ $port.name }}
+  protocol: {{ $port.protocol }}
+  service: {{ $port.number }}
+  pod: {{ $port.containerPort }}
+{{- end -}}
+
+{{- end -}}
+
+{{ include "ph.service.render" (include "single-deployment.service.data" . | fromYaml ) }}

@@ -1,0 +1,79 @@
+{{- define "single-deployment.deployment.data" -}}
+
+name: {{ template "single-deployment.fullname" . }}
+labels:
+  {{- include "single-deployment.labels" . | nindent 2 }}
+annotations:
+  {{- toYaml .Values.deploymentAnnotations | nindent 2 }}
+selector:
+  {{- include "single-deployment.selectorLabels" . | nindent 4 }}
+replicas: {{ .Values.replicaCount }}
+strategy:
+  {{- toYaml .Values.updateStrategy | nindent 2 }}
+
+pod_labels:
+  {{- include "single-deployment.selectorLabels" . | nindent 4 }}
+pod_annotations:
+  {{- toYaml .Values.podAnnotations | nindent 2 }}
+topologySpreadConstraints:
+  {{- toYaml .Values.topologySpreadConstraints | nindent 2 }}
+tolerations:
+  {{- toYaml .Values.tolerations | nindent 2 }}
+affinity:
+  {{- toYaml .Values.affinity | nindent 2 }}
+nodeSelector:
+  {{- toYaml .Values.nodeSelector | nindent 2 }}
+securityContext:
+  {{- toYaml .Values.podSecurityContext | nindent 2 }}
+imagePullSecrets:
+  {{- toYaml .Values.imagePullSecrets | nindent 2 }}
+terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
+
+volumes:
+  {{- toYaml .Values.extraVolumes | nindent 2 }}
+
+init_containers:
+  {{- toYaml .Values.initContainers | nindent 2 }}
+
+containers_dict:
+  main:
+    name: main
+    image: "{{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}"
+    imagePullPolicy: {{ .Values.image.pullPolicy }}
+    {{- with .Values.image.command }}
+    command:
+      {{- toYaml . | nindent 4 }}
+    {{- end }}
+    {{- with .Values.image.args }}
+    args:
+      {{- toYaml . | nindent 4 }}
+    {{- end }}
+    # env_literal:
+    # env_values_configmap:
+    # env_from_field_ref:
+    # env_from_resource_ref:
+    envFrom:
+      secrets:
+        - {{ template "single-deployment.fullname" . }}-env
+    ports:
+    {{- range $port := .Values.containerPorts }}
+    - name: {{ $port.name }}
+      protocol: {{ $port.protocol }}
+      pod: {{ $port.number }}
+    {{- end }}
+
+    lifecycle:
+      {{- toYaml .Values.lifecycle | nindent 6 }}
+
+    securityContext:
+      {{- toYaml .Values.securityContext | nindent 6 }}
+
+    volumeMounts:
+      {{- toYaml .Values.extraVolumeMounts | nindent 6 }}
+
+    resources:
+      {{- toYaml .Values.resources | nindent 6 }}
+
+{{- end -}}
+
+{{ include "ph.deployment.render" (include "single-deployment.deployment.data" . | fromYaml ) }}
