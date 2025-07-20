@@ -4,6 +4,9 @@ description: A Helm chart for single deployment application
 type: application
 version: 0.3.0
 appVersion: "latest"
+maintainers:
+  - name: pmint93
+    email: phamminhthanh69@gmail.com
 dependencies:
   - name: prefapp-helm
     version: 0.11.0
