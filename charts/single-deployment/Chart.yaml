@@ -1,0 +1,10 @@
+apiVersion: v2
+name: single-deployment
+description: A Helm chart for single deployment application
+type: application
+version: 0.3.0
+appVersion: "latest"
+dependencies:
+  - name: prefapp-helm
+    version: 0.11.0
+    repository: https://prefapp.github.io/prefapp-helm

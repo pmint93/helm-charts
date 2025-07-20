@@ -1,0 +1,184 @@
+nameOverride: ""
+fullnameOverride: ""
+
+image:
+  repository: pmint93/default-backend
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+  pullPolicy: IfNotPresent
+  # Overrides the image command and args
+  command: []
+  args: []
+
+imagePullSecrets: []
+# - private-registry
+
+## Additional containers that can initialize the pod.
+initContainers: []
+
+## Liveness and readiness probe values
+## Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
+##
+livenessProbe:
+  path: /healthz
+  port: 10253
+  failureThreshold: 3
+  initialDelaySeconds: 60
+  periodSeconds: 10
+  successThreshold: 1
+  timeoutSeconds: 1
+readinessProbe:
+  path: /healthz
+  port: 10253
+  failureThreshold: 3
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  successThreshold: 1
+  timeoutSeconds: 1
+
+## Annotations to be added to Deployment definitions
+##
+annotations: {}
+
+## Annotations to be added to pods
+##
+podAnnotations: {}
+
+## Labels to be added to the pods
+##
+podLabels: {}
+
+## Affinity to be added to pods
+##
+podAffinity: {}
+
+## Security context settings to be added to the pods
+##
+podSecurityContext: {}
+#  sysctls:
+#  - name: net.ipv4.ip_local_port_range
+#    value: "1024 65535"
+
+## Security context settings to be added to the containers
+##
+securityContext: {}
+
+# How many seconds to wait before terminating a pod.
+terminationGracePeriodSeconds: 60
+
+# Topology spread constraints to be added to the pod
+# - the example below may need match labels adjusted but would
+#   cause the pods to be spread across all available pods
+# (requires kubernetes v1.19 or later)
+topologySpreadConstraints: []
+#  - maxSkew: 1
+#    topologyKey: kubernetes.io/hostname
+#    whenUnsatisfiable: ScheduleAnyway
+#    labelSelector:
+#      matchLabels:
+#        app.kubernetes.io/name: haproxy-ingress
+#        app.kubernetes.io/instance: haproxy
+
+# Configure container lifecycle. When scaling replicas down this can be
+# used to prevent container from terminating quickly and drop in-flight requests.
+# For example, when the runs behind Network Load Balancer this can be used
+# to configure preStop hook to sleep along with deregistration_delay.
+lifecycle: {}
+
+# default values for http and https containerPorts
+containerPorts:
+  - name: http
+    protocol: TCP
+    number: 80
+
+# The update strategy to apply to the Deployment
+##
+updateStrategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxUnavailable: 0
+    maxSurge: 1
+
+# Deployment
+replicaCount: 1
+
+resources: {}
+#  limits:
+#    cpu: 100m
+#    memory: 64Mi
+#  requests:
+#    cpu: 100m
+#    memory: 64Mi
+
+## Node tolerations for server scheduling to nodes with taints
+## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+##
+tolerations: []
+#  - key: "key"
+#    operator: "Equal|Exists"
+#    value: "value"
+#    effect: "NoSchedule|PreferNoSchedule|NoExecute(1.6 only)"
+
+affinity: {}
+
+## Node labels for pod assignment
+## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+##
+nodeSelector: {}
+
+service:
+  enabled: true
+  annotations: {}
+  labels: {}
+  type: ClusterIP
+  ## Set external traffic policy to: "Local" to preserve source IP on
+  ## providers supporting it
+  ## Ref: https://kubernetes.io/docs/tutorials/services/source-ip/#source-ip-for-services-with-typeloadbalancer
+  externalTrafficPolicy: Local
+  ports:
+    - name: http
+      protocol: TCP
+      number: 80
+      containerPort: http
+
+ingress:
+  enabled: false
+  # ingressClassName: ""
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  labels: {}
+  path: /
+  pathType: Prefix
+  hosts:
+    - default-backend.example.io
+  ## Extra paths to prepend to every host configuration. This is useful when working with annotation based services.
+  extraPaths: []
+  # - path: /*
+  #   pathType: Prefix
+  #   backend:
+  #     service:
+  #       name: ssl-redirect
+  #       port:
+  #         name: use-annotation
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+## Additional environment variables to set
+extraEnvs: {}
+  # LOG_LEVEL: info
+  # FOO: bar
+
+## Additional volumes and volume mounts
+extraVolumes: []
+extraVolumeMounts: []
+
+## Additional containers to the pod.
+extraContainers: []
+
+## Extra files to be created as secret, which usually be used to mount into containers using extraVolumes and extraVolumeMounts
+## File data should be base64 encoded, to support non-text file format
+filesSecret: {}
+  # config.json: "eyJleGFtcGxlIjogInZhbHVlIn0K"
