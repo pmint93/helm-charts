@@ -23,6 +23,6 @@ spec:
     backendRefs:
     - kind: Service
       name: {{ template "single-deployment.fullname" $ }}
-      port: http
+      port: {{ (index .Values.service.ports 0).number }}
 
 {{- end -}}
