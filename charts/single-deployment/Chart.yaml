@@ -2,7 +2,7 @@ apiVersion: v2
 name: single-deployment
 description: A Helm chart for single deployment application
 type: application
-version: 0.3.0
+version: 0.4.0
 appVersion: "latest"
 maintainers:
   - name: pmint93
