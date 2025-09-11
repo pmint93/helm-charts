@@ -1501,6 +1501,23 @@ entries:
   single-deployment:
   - apiVersion: v2
     appVersion: latest
+    created: "2025-09-11T14:24:30.010737912Z"
+    dependencies:
+    - name: prefapp-helm
+      repository: https://prefapp.github.io/prefapp-helm
+      version: 0.11.0
+    description: A Helm chart for single deployment application
+    digest: f728a7b719107d5cb1b3919fc72d09b8b6c8419e3bd6731879069d2a4fdbd608
+    maintainers:
+    - email: phamminhthanh69@gmail.com
+      name: pmint93
+    name: single-deployment
+    type: application
+    urls:
+    - https://github.com/pmint93/helm-charts/releases/download/single-deployment-0.4.2/single-deployment-0.4.2.tgz
+    version: 0.4.2
+  - apiVersion: v2
+    appVersion: latest
     created: "2025-09-05T03:05:27.457015972Z"
     dependencies:
     - name: prefapp-helm
