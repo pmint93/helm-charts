@@ -173,6 +173,7 @@ httproute:
   labels: {}
   path: /
   pathType: PathPrefix
+  # rewriteTo: /
   hosts:
     - default-backend.example.io
 
