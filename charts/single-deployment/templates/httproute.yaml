@@ -14,7 +14,8 @@ spec:
     kind: Gateway
     name: {{ .Values.httproute.gatewayName }}
     namespace: {{ .Values.httproute.gatewayNamespace }}
-  hostnames: {{ .Values.httproute.hosts }}
+  hostnames:
+  {{- toYaml .Values.httproute.hosts | nindent 2 }}
   rules:
   - matches:
     - path:
