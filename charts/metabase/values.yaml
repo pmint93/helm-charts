@@ -232,6 +232,10 @@ ingress:
 
 route:
   enabled: false
+  labels:
+    # Used to add custom labels to the Route
+    # Useful if for example you have multiple Ingress controllers (Routers) and want your Routers to bind to specific Routes
+    # traffic: internal
   annotations:
     {}
     # haproxy.router.openshift.io/timeout: "60s"
