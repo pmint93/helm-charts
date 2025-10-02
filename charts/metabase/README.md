@@ -129,6 +129,7 @@ The following table lists the configurable parameters of the Metabase chart and 
 | ingress.annotations                             | Ingress annotations configuration                                          | {}                |
 | ingress.tls                                     | Ingress TLS configuration                                                  | null              |
 | route.enabled                                   | Enable OpenShift route resource                                            | false             |
+| route.labels                                    | Route labels configuration                                                 | null              |
 | route.annotations                               | Route annotations configuration                                            | {}                |
 | route.host                                      | Route hostname                                                             | null              |
 | route.path                                      | Route path                                                                 | ""                |
