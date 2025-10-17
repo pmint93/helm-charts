@@ -275,7 +275,7 @@ spec:
 {{ toYaml .Values.resources | indent 12 }}
         {{- if gt (len .Values.database.googleCloudSQL.instanceConnectionNames) 0 }}
         - name: cloudsql-proxy
-          image: "gcr.io/cloudsql-docker/gce-proxy:{{ or .Values.database.googleCloudSQL.sidecarImageTag "latest" }}"
+          image: "{{ or .Values.database.googleCloudSQL.sidecarImage "gcr.io/cloudsql-docker/gce-proxy" }}:{{ or .Values.database.googleCloudSQL.sidecarImageTag "latest" }}"
           command:
             - "/cloud_sql_proxy"
             - "-instances={{ join "," .Values.database.googleCloudSQL.instanceConnectionNames }}"

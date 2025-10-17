@@ -89,9 +89,10 @@ The following table lists the configurable parameters of the Metabase chart and 
 | database.existingSecretConnectionURIKey         | ConnectionURI key for exising secret                                       | null              |
 | database.existingSecretEncryptionKeyKey         | EncryptionKey key for exising secret                                       | null              |
 | database.googleCloudSQL.instanceConnectionNames | Google Cloud SQL instance connection names. See `values.yaml` for details. | []                |
+| database.googleCloudSQL.sidecarImage            | Specific image for the Google Cloud SQL Auth proxy sidecar                 | gcr.io/cloudsql-docker/gce-proxy            |
 | database.googleCloudSQL.sidecarImageTag         | Specific tag for the Google Cloud SQL Auth proxy sidecar image             | latest            |
 | database.googleCloudSQL.resources               | Google Cloud SQL Auth proxy resource requests and limits                   | {}                |
-| database.googleCloudSQL.securityContext         | Google Cloud SQL Security Context                                          | runAsNonRoot: true| 
+| database.googleCloudSQL.securityContext         | Google Cloud SQL Security Context                                          | runAsNonRoot: true|
 | password.complexity                             | Complexity requirement for Metabase account's password                     | normal            |
 | password.length                                 | Minimum length required for Metabase account's password                    | 6                 |
 | timeZone                                        | Service time zone                                                          | UTC               |
@@ -129,6 +130,7 @@ The following table lists the configurable parameters of the Metabase chart and 
 | ingress.annotations                             | Ingress annotations configuration                                          | {}                |
 | ingress.tls                                     | Ingress TLS configuration                                                  | null              |
 | route.enabled                                   | Enable OpenShift route resource                                            | false             |
+| route.labels                                    | Route labels configuration                                                 | null              |
 | route.annotations                               | Route annotations configuration                                            | {}                |
 | route.host                                      | Route hostname                                                             | null              |
 | route.path                                      | Route path                                                                 | ""                |

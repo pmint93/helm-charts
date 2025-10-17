@@ -1,0 +1,41 @@
+{{- if .Values.httproute.enabled -}}
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: {{ template "single-deployment.fullname" . }}
+  labels:
+    {{- include "single-deployment.labels" . | nindent 4 }}
+    {{- with .Values.httproute.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  parentRefs:
+  - group: gateway.networking.k8s.io
+    kind: Gateway
+    name: {{ .Values.httproute.gatewayName }}
+    namespace: {{ .Values.httproute.gatewayNamespace }}
+  hostnames:
+  {{- toYaml .Values.httproute.hosts | nindent 2 }}
+  rules:
+  - matches:
+    - path:
+        type: {{ .Values.httproute.pathType }}
+        value: {{ .Values.httproute.path }}
+    {{- if .Values.httproute.rewriteTo }}
+    filters:
+      - type: URLRewrite
+        urlRewrite:
+          path:
+            type: {{- if eq .Values.httproute.pathType "Exact" }} ReplaceFullPath {{ else }} ReplacePrefixMatch {{ end }}
+            {{- if eq .Values.httproute.pathType "Exact" }}
+            replaceFullPath: {{ .Values.httproute.rewriteTo }}
+            {{- else }}
+            replacePrefixMatch: {{ .Values.httproute.rewriteTo }}
+            {{- end }}
+    {{- end }}
+    backendRefs:
+    - kind: Service
+      name: {{ template "single-deployment.fullname" $ }}
+      port: {{ (index .Values.service.ports 0).number }}
+
+{{- end -}}

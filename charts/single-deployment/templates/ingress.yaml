@@ -1,0 +1,38 @@
+
+{{- define "single-deployment.ingress.data" -}}
+
+version: {{ .Capabilities.KubeVersion.GitVersion }}
+name: {{ template "single-deployment.fullname" . }}
+labels:
+  {{- include "single-deployment.labels" . | nindent 2 }}
+  {{- toYaml .Values.ingress.labels | nindent 2 }}
+annotations:
+  {{- toYaml .Values.ingress.annotations | nindent 2 }}
+
+ingressClassName: {{ .Values.ingress.ingressClassName }}
+
+tls:
+  {{- toYaml .Values.ingress.tls | nindent 2 }}
+
+hosts:
+{{- range $host := .Values.ingress.hosts }}
+- host: {{ $host }}
+  rules_path:
+    - path: {{ $.Values.ingress.path }}
+      pathType: {{ $.Values.ingress.pathType }}
+      service: {{ template "single-deployment.fullname" $ }}
+      port_name: http
+    {{- range $path := $.Values.ingress.extraPaths }}
+    - path: {{ $path.path }}
+      pathType: {{ $path.pathType }}
+      service: {{ $path.backend.service.name }}
+      port_name: {{ $path.backend.service.port.name }}
+      port: {{ $path.backend.service.port.number }}
+    {{ end -}}
+{{- end -}}
+
+{{- end -}}
+
+{{- if .Values.ingress.enabled -}}
+{{ include "ph.ingress.render" (include "single-deployment.ingress.data" . | fromYaml ) }}
+{{- end -}}
