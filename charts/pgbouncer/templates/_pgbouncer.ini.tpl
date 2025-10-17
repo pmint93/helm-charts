@@ -173,7 +173,7 @@ pool_mode = {{ .Values.settings.pool_mode | default "session" }}
 
 ;; Number of prepared statements to cache on a server connection (zero value
 ;; disables support of prepared statements).
-max_prepared_statements = {{ .Values.settings.max_prepared_statements | default 0 }}
+max_prepared_statements = {{ .Values.extraSettings.max_prepared_statements | default 0 }}
 
 ;; Query for cleaning connection immediately after releasing from
 ;; client.  No need to put ROLLBACK here, pgbouncer does not reuse

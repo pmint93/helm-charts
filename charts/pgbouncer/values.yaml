@@ -39,10 +39,11 @@ settings:
   client_tls_ca_file: null
   client_tls_key_file: null
   client_tls_cert_file: null
-  max_prepared_statements: 0
 
 extraSettings:
   ignore_startup_parameters: extra_float_digits
+  max_prepared_statements: 0
+
 
 existingSecrets: []
 # - name: my-cert-secret
