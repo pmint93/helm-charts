@@ -243,6 +243,13 @@ spec:
           securityContext:
           {{- .Values.securityContext | toYaml | nindent 12 }}
           {{- end }}
+          startupProbe:
+            httpGet:
+              path: {{ .Values.startupProbe.path }}
+              port: {{ .Values.service.internalPort }}
+            failureThreshold: {{ .Values.startupProbe.failureThreshold }}
+            timeoutSeconds: {{ .Values.startupProbe.timeoutSeconds }}
+            periodSeconds: {{ .Values.startupProbe.periodSeconds }}
           livenessProbe:
             httpGet:
               path: {{ .Values.livenessProbe.path }}

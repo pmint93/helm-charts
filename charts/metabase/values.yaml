@@ -175,15 +175,21 @@ extraVolumes: []
 #  - name: plugins
 #    emptyDir: {}
 
+startupProbe:
+  path: /api/health
+  timeoutSeconds: 3
+  failureThreshold: 60
+  periodSeconds: 5
+
 livenessProbe:
   path: /api/health
-  initialDelaySeconds: 120
+  initialDelaySeconds: 5
   timeoutSeconds: 30
   failureThreshold: 6
 
 readinessProbe:
   path: /api/health
-  initialDelaySeconds: 30
+  initialDelaySeconds: 5
   timeoutSeconds: 3
   periodSeconds: 5
 

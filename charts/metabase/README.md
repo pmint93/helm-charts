@@ -103,10 +103,13 @@ The following table lists the configurable parameters of the Metabase chart and 
 | extraInitContainers                             | Additional init containers e.g. to download plugins                        | []                |
 | extraVolumes                                    | Additional server volumes                                                  | []                |
 | extraVolumeMounts                               | Additional server volumeMounts                                             | []                |
-| livenessProbe.initialDelaySeconds               | Delay before liveness probe is initiated                                   | 120               |
+| startupProbe.timeoutSeconds                     | When the probe times out                                                   | 3                 |
+| startupProbe.failureThreshold                   | Minimum consecutive failures for the probe                                 | 60                |
+| startupProbe.periodSeconds                      | How often to perform the probe                                             | 5                 |
+| livenessProbe.initialDelaySeconds               | Delay before liveness probe is initiated                                   | 5                 |
 | livenessProbe.timeoutSeconds                    | When the probe times out                                                   | 30                |
 | livenessProbe.failureThreshold                  | Minimum consecutive failures for the probe                                 | 6                 |
-| readinessProbe.initialDelaySeconds              | Delay before readiness probe is initiated                                  | 30                |
+| readinessProbe.initialDelaySeconds              | Delay before readiness probe is initiated                                  | 5                 |
 | readinessProbe.timeoutSeconds                   | When the probe times out                                                   | 3                 |
 | readinessProbe.periodSeconds                    | How often to perform the probe                                             | 5                 |
 | service.type                                    | ClusterIP, NodePort, or LoadBalancer                                       | ClusterIP         |
