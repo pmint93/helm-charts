@@ -128,6 +128,27 @@ database:
     resources: {}
     securityContext:
       runAsNonRoot: true
+  postgresBackupHook:
+    ## Only when you use postgres
+    ## enables a pre-upgrade hook that backups the metabase database with pg_dump prior to upgrading the Helm release
+    enabled: false
+    ## image that contains 'pg_dump'
+    ## version/tag should align with your actual version of postgres (e.g. 'postgres:17.7') for best compability of the dump
+    image: "postgres:latest"
+    ## secret with the database credentials must exist
+    # existingSecret:
+    ## either use connection string
+    # existingSecretConnectionURIKey:
+    ## or specify user,password,host,port and database seperately
+    # existingSecretUsernameKey:
+    # existingSecretPasswordKey:
+    # existingSecretPortKey:
+    # existingSecretHostKey:
+    # existingSecretDatabaseNameKey:
+    ## name of the PersistenceVolumeClaim to store the backup
+    # pvcName:
+    ## optional: specify pg_dump '--schema' option (e.g. if you have multiple schemas and only want to backup specific ones)
+    # schema:
 
 password:
   # Changing Metabase password complexity:
