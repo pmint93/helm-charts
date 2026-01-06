@@ -1,0 +1,67 @@
+{{- if and (eq .Values.database.type "postgres") .Values.database.postgresBackupHook.enabled }}
+{{- $fullName := include "metabase.fullname" . }}
+{{- $datestring := (now | date "20060102-150405") }}
+{{- $jobname := ( printf "%s-rev-%d-%s" $fullName .Release.Revision $datestring ) }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ $jobname }}
+  annotations:
+    "helm.sh/hook": pre-upgrade
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+spec:
+  backoffLimit: 0
+  template:
+    metadata:
+      name: pg-dump
+    spec:
+      containers:
+        - name: pg-dump
+          image: {{ .Values.database.postgresBackupHook.image | required "database.postgresBackupHook.image must be set" }}
+          env:
+            {{- if .Values.database.postgresBackupHook.existingSecretConnectionURIKey }}
+            - name: BACKUP_CONNECTION_URI
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.database.postgresBackupHook.existingSecret | required "database.postgresBackupHook.existingSecret must be set" }}
+                  key: {{ .Values.database.postgresBackupHook.existingSecretConnectionURIKey }}
+            {{- else }}
+            - name: PGPASSWORD 
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.database.postgresBackupHook.existingSecret }}
+                  key: {{ .Values.database.postgresBackupHook.existingSecretPasswordKey }}
+            - name: PGHOST
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.database.postgresBackupHook.existingSecret }}
+                  key: {{ .Values.database.postgresBackupHook.existingSecretHostKey }}
+            - name: PGUSER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.database.postgresBackupHook.existingSecret }}
+                  key: {{ .Values.database.postgresBackupHook.existingSecretUsernameKey }}
+            - name: PGDATABASE 
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.database.postgresBackupHook.existingSecret }}
+                  key: {{ .Values.database.postgresBackupHook.existingSecretDatabaseNameKey }}
+            - name: PGPORT
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.database.postgresBackupHook.existingSecret }}
+                  key: {{ .Values.database.postgresBackupHook.existingSecretPortKey }}
+            {{- end }}
+          command:
+            - sh
+            - "-c" 
+            - pg_dump --file {{ ( printf "/backup/metabase_db_rev_%d_%s.dump" .Release.Revision $datestring ) | squote }} --format=c --verbose --verbose {{ if .Values.database.postgresBackupHook.schema }}--schema={{ .Values.database.postgresBackupHook.schema | squote }}{{- end }} {{ if .Values.database.postgresBackupHook.existingSecretConnectionURIKey }}$BACKUP_CONNECTION_URI{{- else }}$PGDATABASE{{- end }}
+          volumeMounts:
+            - name: backup-storage
+              mountPath: /backup
+      restartPolicy: Never
+      volumes:
+        - name: backup-storage
+          persistentVolumeClaim:
+            claimName: {{ .Values.database.postgresBackupHook.pvcName | required ".Values.database.postgresBackupHook.pvcName is required" }}
+{{- end }}
