@@ -230,6 +230,10 @@ service:
     # Used to add custom labels to the Service.
   loadBalancerSourceRanges:
     {}
+  # ipFamilyPolicy: PreferDualStack
+  # ipFamilies:
+  #   - IPv6
+  #   - IPv4
   # Used to configure a static IP address
   loadBalancerIP:
 
