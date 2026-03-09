@@ -3,7 +3,7 @@ apiVersion: vpcresources.k8s.aws/v1beta1
 kind: SecurityGroupPolicy
 metadata:
   name: {{ template "metabase.fullname" . }}
-  namespace: {{ .Release.Namespace }}
+  namespace:  {{ template "metabase.namespace" . }}
   labels:
     app: {{ template "metabase.name" . }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}

@@ -4,7 +4,7 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   name: {{ template "metabase.fullname" . }}
-  namespace: {{ .Release.Namespace }}
+  namespace:  {{ template "metabase.namespace" . }}
   labels:
     app: {{ template "metabase.name" . }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}

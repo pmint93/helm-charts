@@ -86,7 +86,12 @@ Create chart name and version as used by the chart label.
 
 {{/*
 Create the namespace name
+We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 */}}
 {{- define "metabase.namespace" -}}
-{{- .Release.Namespace -}}
+{{- if .Values.fullnamespaceOverride -}}
+{{- .Values.fullnamespaceOverride | trunc 63 | trimSuffix "-" -}}
+{{- else -}}
+{{- printf .Release.Namespace | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
 {{- end -}}

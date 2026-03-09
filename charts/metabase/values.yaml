@@ -32,9 +32,10 @@ image:
   pullPolicy: IfNotPresent
   pullSecrets: []
 
-## String to fully override metabase.fullname template
+## Strings to fully override metabase.fullname and metabase.namespace templates
 ##
 # fullnameOverride:
+# fullnamespaceOverride:
 
 # Config Jetty web server
 listen:
