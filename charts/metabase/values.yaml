@@ -46,6 +46,8 @@ monitoring:
   enabled: false
   serviceMonitor:
     enabled: false
+    # Override the release label, e.g. "kube-prometheus-stack"
+    releaseLabel: ""
   port: 9191
 
 ssl:

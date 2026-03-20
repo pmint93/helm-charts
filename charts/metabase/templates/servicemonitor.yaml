@@ -7,7 +7,7 @@ metadata:
   labels:
     app: {{ template "metabase.name" . }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
-    release: {{ .Release.Name }}
+    release: {{ .Values.monitoring.serviceMonitor.releaseLabel | default .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
   selector:
