@@ -307,13 +307,13 @@ route:
 # Ref: https://gateway-api.sigs.k8s.io/
 httpRoute:
   enabled: false
- 
+
   ## Labels to add to the HTTPRoute resource
   labels: {}
- 
+
   ## Annotations to add to the HTTPRoute resource
   annotations: {}
- 
+
   ## Parent Gateway reference(s) that this HTTPRoute attaches to.
   ## The Gateway must already exist and have a matching listener.
   ## TLS termination is configured on the Gateway, not here.
@@ -321,19 +321,19 @@ httpRoute:
     - name: ""
       # namespace: gateway-namespace
       # sectionName: https
- 
+
   ## Hostnames to match. Must align with the Gateway listener's hostname/certificate.
   ## Example:
   ##   hostnames:
   ##     - metabase.example.com
   hostnames: []
- 
+
   ## Simple path-based routing (used when 'rules' is not set)
   path: "/"
- 
+
   ## Override the backend service port (defaults to .Values.service.port)
   # servicePort: 80
- 
+
   ## Advanced: define custom routing rules.
   ## When set, 'path' above is ignored. Each rule gets the service backend automatically.
   ## Example:
