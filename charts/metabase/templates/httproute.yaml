@@ -1,0 +1,81 @@
+{{- if .Values.httpRoute.enabled -}}
+{{- $serviceName := include "metabase.fullname" . -}}
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: {{ template "metabase.fullname" . }}
+  namespace: {{ template "metabase.namespace" . }}
+  labels:
+    app: {{ template "metabase.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+  {{- range $key, $value := .Values.httpRoute.labels }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+  {{- if .Values.httpRoute.annotations }}
+  annotations:
+    {{- range $key, $value := .Values.httpRoute.annotations }}
+      {{ $key }}: {{ $value | quote }}
+    {{- end }}
+  {{- end }}
+spec:
+  parentRefs:
+  {{- range .Values.httpRoute.parentRefs }}
+    - name: {{ .name }}
+      {{- if .namespace }}
+      namespace: {{ .namespace }}
+      {{- end }}
+      {{- if .sectionName }}
+      sectionName: {{ .sectionName }}
+      {{- end }}
+      {{- if .port }}
+      port: {{ .port }}
+      {{- end }}
+  {{- end }}
+  {{- if .Values.httpRoute.hostnames }}
+  hostnames:
+  {{- range .Values.httpRoute.hostnames }}
+    - {{ . | quote }}
+  {{- end }}
+  {{- end }}
+  rules:
+  {{- if .Values.httpRoute.rules }}
+  {{- range .Values.httpRoute.rules }}
+    - matches:
+      {{- range .matches }}
+        - path:
+            type: {{ .path.type | default "PathPrefix" }}
+            value: {{ .path.value | default "/" }}
+          {{- if .headers }}
+          headers:
+          {{- range .headers }}
+            - name: {{ .name }}
+              value: {{ .value }}
+              {{- if .type }}
+              type: {{ .type }}
+              {{- end }}
+          {{- end }}
+          {{- end }}
+      {{- end }}
+      {{- if .filters }}
+      filters:
+      {{- toYaml .filters | nindent 8 }}
+      {{- end }}
+      backendRefs:
+        - name: {{ $serviceName }}
+          port: {{ $.Values.httpRoute.servicePort | default $.Values.service.port | default 80 }}
+          {{- if .weight }}
+          weight: {{ .weight }}
+          {{- end }}
+  {{- end }}
+  {{- else }}
+    - matches:
+        - path:
+            type: PathPrefix
+            value: {{ .Values.httpRoute.path | default "/" }}
+      backendRefs:
+        - name: {{ $serviceName }}
+          port: {{ .Values.httpRoute.servicePort | default .Values.service.port | default 80 }}
+  {{- end }}
+{{- end }}

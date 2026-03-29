@@ -265,6 +265,7 @@ ingress:
     #   hosts:
     #     - metabase.domain.com
 
+# Note: This is the Openshift route
 route:
   enabled: false
   labels:
@@ -300,6 +301,54 @@ route:
 # https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/deployment-v1/#DeploymentSpec
 # strategy:
 #   type: "Recreate"
+
+# -- Kubernetes Gateway API HTTPRoute
+# Use it with a Gateway API implementation (e.g. Envoy Gateway, Istio, Cilium, etc.)
+# Ref: https://gateway-api.sigs.k8s.io/
+httpRoute:
+  enabled: false
+
+  ## Labels to add to the HTTPRoute resource
+  labels: {}
+
+  ## Annotations to add to the HTTPRoute resource
+  annotations: {}
+
+  ## Parent Gateway reference(s) that this HTTPRoute attaches to.
+  ## The Gateway must already exist and have a matching listener.
+  ## TLS termination is configured on the Gateway, not here.
+  parentRefs:
+    - name: ""
+      # namespace: gateway-namespace
+      # sectionName: https
+
+  ## Hostnames to match. Must align with the Gateway listener's hostname/certificate.
+  ## Example:
+  ##   hostnames:
+  ##     - metabase.example.com
+  hostnames: []
+
+  ## Simple path-based routing (used when 'rules' is not set)
+  path: "/"
+
+  ## Override the backend service port (defaults to .Values.service.port)
+  # servicePort: 80
+
+  ## Advanced: define custom routing rules.
+  ## When set, 'path' above is ignored. Each rule gets the service backend automatically.
+  ## Example:
+  ##   rules:
+  ##     - matches:
+  ##         - path:
+  ##             type: PathPrefix
+  ##             value: /
+  ##       filters:
+  ##         - type: RequestHeaderModifier
+  ##           requestHeaderModifier:
+  ##             set:
+  ##               - name: X-Forwarded-Proto
+  ##                 value: https
+  # rules: []
 
 serviceAccount:
   # Specifies whether a service account should be created
