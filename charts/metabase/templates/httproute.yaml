@@ -62,6 +62,10 @@ spec:
       filters:
       {{- toYaml .filters | nindent 8 }}
       {{- end }}
+      {{- if .timeouts }}
+      timeouts:
+      {{- toYaml .timeouts | nindent 8 }}
+      {{- end }}
       backendRefs:
         - name: {{ $serviceName }}
           port: {{ $.Values.httpRoute.servicePort | default $.Values.service.port | default 80 }}
