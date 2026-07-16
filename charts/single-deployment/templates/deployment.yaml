@@ -78,6 +78,10 @@ containers_dict:
 
     resources:
       {{- toYaml .Values.resources | nindent 6 }}
+  {{- range $c := .Values.extraContainers }}
+  $c.name:
+    {{- toYaml $c | nindent 4 }}
+  {{- end }}
 
 {{- end -}}
 
