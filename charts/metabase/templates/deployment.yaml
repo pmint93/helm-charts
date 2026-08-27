@@ -247,6 +247,7 @@ spec:
             httpGet:
               path: {{ .Values.startupProbe.path }}
               port: {{ .Values.service.internalPort }}
+            initialDelaySeconds: {{ .Values.startupProbe.initialDelaySeconds }}
             failureThreshold: {{ .Values.startupProbe.failureThreshold }}
             timeoutSeconds: {{ .Values.startupProbe.timeoutSeconds }}
             periodSeconds: {{ .Values.startupProbe.periodSeconds }}

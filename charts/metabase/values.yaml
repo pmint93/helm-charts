@@ -208,6 +208,7 @@ extraVolumes: []
 
 startupProbe:
   path: /api/health
+  initialDelaySeconds: 5
   timeoutSeconds: 3
   failureThreshold: 60
   periodSeconds: 5
