@@ -55,6 +55,7 @@ The following table lists the configurable parameters of the Metabase chart and 
 | pdb.create                                      | Enable/disable a Pod Disruption Budget creation                            | false             |
 | pdb.minAvailable                                | Minimum number/percentage of pods that should remain scheduled             | 1                 |
 | pdb.maxUnavailable                              | Maximum number/percentage of pods that may be made unavailable             |                   |
+| commonLabels                                    | labels added to the metadata of every object                               | {}                |
 | deploymentAnnotations                           | extra deployment annotations                                               | {}                |
 | deploymentLabels                                | extra deployment labels                                                    | {}                |
 | podAnnotations                                  | controller pods annotations                                                | {}                |

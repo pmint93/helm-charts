@@ -8,6 +8,9 @@ metadata:
     {{- with .Values.database.persistence.extraPvcLabels }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
+    {{- with include "metabase.commonLabels" . }}
+    {{- . | nindent 4 }}
+    {{- end }}
   {{- with .Values.database.persistence.annotations  }}
   annotations:
     {{- toYaml . | nindent 4 }}

@@ -8,6 +8,9 @@ metadata:
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
+    {{- with include "metabase.commonLabels" . }}
+    {{- . | nindent 4 }}
+    {{- end }}
 data:
   {{- if .Values.log4jProperties }}
   log4j.properties:
