@@ -6,6 +6,14 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: {{ $jobname }}
+  labels:
+    app: {{ template "metabase.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    {{- with include "metabase.commonLabels" . }}
+    {{- . | nindent 4 }}
+    {{- end }}
   annotations:
     "helm.sh/hook": pre-upgrade
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded

@@ -85,6 +85,16 @@ Create chart name and version as used by the chart label.
 {{- end -}}
 
 {{/*
+Labels from .Values.commonLabels, added to the metadata of every object.
+No selector uses them, so a change leaves the immutable selectors untouched.
+*/}}
+{{- define "metabase.commonLabels" -}}
+{{- with .Values.commonLabels -}}
+{{ toYaml . }}
+{{- end -}}
+{{- end -}}
+
+{{/*
 Create the namespace name
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 */}}

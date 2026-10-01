@@ -23,6 +23,8 @@ pdb:
   minAvailable: 1
   maxUnavailable: ""
 
+# Labels added to the metadata of every object. No selector uses them.
+commonLabels: {}
 deploymentAnnotations: {}
 deploymentLabels: {}
 podAnnotations: {}
