@@ -67,6 +67,13 @@ deploymentAnnotations: {}
 
 podAnnotations: {}
 
+podLabels: {}
+  # team: platform
+
+## Priority class of the pod
+## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/
+priorityClassName: ""
+
 podSecurityContext: {}
   # fsGroup: 2000
 
@@ -141,6 +148,11 @@ serviceAccount:
   # existingServiceAccountName: ""
   # annotations:
   #   iam.gke.io/gcp-service-account: sa-name@project.iam.gserviceaccount.com
+
+initContainers: []
+#  - name: myInitContainer
+#    image: repo/image:tag
+#    command: ["sh", "-c", "echo init"]
 
 sidecars: []
 #  - name: mySidecar
