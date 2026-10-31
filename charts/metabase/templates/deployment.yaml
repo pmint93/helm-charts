@@ -72,7 +72,7 @@ spec:
           {{- end }}
           {{- if .Values.ssl.enabled }}
           - name: MB_JETTY_SSL
-            value: true
+            value: "true"
           - name: MB_JETTY_SSL_Port
             value: {{ .Values.ssl.port | quote }}
           - name: MB_JETTY_SSL_Keystore
